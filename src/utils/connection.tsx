@@ -1,6 +1,7 @@
 import { useLocalStorageState } from "./utils";
 import {
   Account,
+  Cluster,
   clusterApiUrl,
   Connection,
   PublicKey,
@@ -18,7 +19,7 @@ import {
 } from "@solana/spl-token-registry";
 import { cache, getMultipleAccounts } from "./accounts";
 
-export type ENV = "mainnet-beta" | "testnet" | "devnet" | "localnet";
+export type ENV = Cluster | "localnet";
 
 export const ENDPOINTS = [
   {

@@ -27,17 +27,11 @@ import {
   LiquidityComponent,
   PoolInfo,
   TokenAccount,
-  createInitSwapInstruction,
-  TokenSwapLayout,
-  depositInstruction,
-  withdrawInstruction,
   TokenSwapLayoutLegacyV0 as TokenSwapLayoutV0,
   TokenSwapLayoutV1,
-  swapInstruction,
   PoolConfig,
-  depositExactOneInstruction,
-  withdrawExactOneInstruction,
 } from "./../models";
+import { TokenSwap, TokenSwapLayout } from "@solana/spl-token-swap";
 
 const LIQUIDITY_TOKEN_PRECISION = 8;
 
@@ -128,7 +122,7 @@ export const removeLiquidity = async (
 
   // withdraw
   instructions.push(
-    withdrawInstruction(
+    TokenSwap.withdrawAllTokenTypesInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -384,11 +378,11 @@ export const swap = async (
         pool.pubkeys.mint,
         signers
       )
-    : undefined;
+    : null;
 
   // swap
   instructions.push(
-    swapInstruction(
+    TokenSwap.swapInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -398,12 +392,11 @@ export const swap = async (
       toAccount,
       pool.pubkeys.mint,
       pool.pubkeys.feeAccount,
+      hostFeeAccount,
       pool.pubkeys.program,
       programIds().token,
       amountIn,
-      minAmountOut,
-      hostFeeAccount,
-      isLatestSwap
+      minAmountOut
     )
   );
 
@@ -845,7 +838,7 @@ async function _addLiquidityExistingPool(
 
   // deposit
   instructions.push(
-    depositInstruction(
+    TokenSwap.depositAllTokenTypesInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -859,8 +852,7 @@ async function _addLiquidityExistingPool(
       programIds().token,
       liquidity,
       amount0,
-      amount1,
-      isLatestSwap
+      amount1
     )
   );
 
@@ -1353,7 +1345,7 @@ async function _addLiquidityNewPool(
   });
 
   instructions.push(
-    createInitSwapInstruction(
+    TokenSwap.createInitSwapInstruction(
       tokenSwapAccount,
       authority,
       holdingAccounts[0].publicKey,
@@ -1364,13 +1356,20 @@ async function _addLiquidityNewPool(
       programIds().token,
       programIds().swap,
       nonce,
-      options,
-      programIds().swapLayout === TokenSwapLayout
+      options.fees.tradeFeeNumerator,
+      options.fees.tradeFeeDenominator,
+      options.fees.ownerTradeFeeNumerator,
+      options.fees.ownerTradeFeeDenominator,
+      options.fees.ownerWithdrawFeeNumerator,
+      options.fees.ownerWithdrawFeeDenominator,
+      options.fees.hostFeeNumerator,
+      options.fees.hostFeeDenominator,
+      options.curveType
     )
   );
 
   // All instructions didn't fit in single transaction
-  // initialize and provide inital liquidity to swap in 2nd (this prevents loss of funds)
+  // initialize and provide initial liquidity to swap in 2nd (this prevents loss of funds)
   tx = await sendTransaction(
     connection,
     wallet,
