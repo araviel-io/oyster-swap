@@ -30,6 +30,7 @@ import {
   TokenSwapLayoutLegacyV0 as TokenSwapLayoutV0,
   TokenSwapLayoutV1,
   PoolConfig,
+  TokenSwapRouter,
 } from "./../models";
 import { TokenSwap, TokenSwapLayout } from "@solana/spl-token-swap";
 
@@ -122,7 +123,7 @@ export const removeLiquidity = async (
 
   // withdraw
   instructions.push(
-    TokenSwap.withdrawAllTokenTypesInstruction(
+    TokenSwapRouter.route(isLatestSwap).withdrawAllTokenTypesInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -138,7 +139,6 @@ export const removeLiquidity = async (
       liquidityAmount,
       minAmount0,
       minAmount1,
-      isLatestSwap
     )
   );
 
@@ -254,7 +254,7 @@ export const removeExactOneLiquidity = async (
 
   // withdraw exact one
   instructions.push(
-    withdrawExactOneInstruction(
+    TokenSwapRouter.route(isLatestSwap).withdrawSingleTokenTypeExactAmountOutInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -267,8 +267,7 @@ export const removeExactOneLiquidity = async (
       pool.pubkeys.program,
       programIds().token,
       tokenAmount,
-      liquidityMaxAmount,
-      isLatestSwap
+      liquidityMaxAmount
     )
   );
 
@@ -382,7 +381,7 @@ export const swap = async (
 
   // swap
   instructions.push(
-    TokenSwap.swapInstruction(
+    TokenSwapRouter.route(isLatestSwap).swapInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -838,7 +837,7 @@ async function _addLiquidityExistingPool(
 
   // deposit
   instructions.push(
-    TokenSwap.depositAllTokenTypesInstruction(
+    TokenSwapRouter.route(isLatestSwap).depositAllTokenTypesInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -966,7 +965,7 @@ async function _addLiquidityExactOneExistingPool(
 
   // deposit
   instructions.push(
-    depositExactOneInstruction(
+    TokenSwapRouter.route(isLatestSwap).depositSingleTokenTypeExactAmountInInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -978,8 +977,7 @@ async function _addLiquidityExactOneExistingPool(
       pool.pubkeys.program,
       programIds().token,
       amount,
-      liquidityToken,
-      isLatestSwap
+      liquidityToken
     )
   );
 
