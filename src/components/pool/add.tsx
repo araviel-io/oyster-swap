@@ -18,7 +18,7 @@ import { SupplyOverview } from "./supplyOverview";
 import { CurrencyInput } from "../currencyInput";
 import { PoolConfigCard } from "./config";
 import "./add.less";
-import { CurveType, PoolInfo, TokenSwapLayout } from "../../models";
+import { CurveType, PoolInfo } from "../../models";
 import { useCurrencyPairState } from "../../utils/currencyPair";
 import {
   CREATE_POOL_LABEL,
@@ -34,6 +34,7 @@ import { PoolIcon } from "../tokenIcon";
 import { AppBar } from "../appBar";
 import { Settings } from "../settings";
 import { programIds } from "../../utils/ids";
+import { TokenSwapLayout } from "@solana/spl-token-swap";
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
