@@ -18,20 +18,6 @@ export const uint64 = (property: string = "uint64"): Object => {
   return BufferLayout.blob(8, property);
 };
 
-const FEE_LAYOUT = BufferLayout.struct(
-  [
-    BufferLayout.nu64("tradeFeeNumerator"),
-    BufferLayout.nu64("tradeFeeDenominator"),
-    BufferLayout.nu64("ownerTradeFeeNumerator"),
-    BufferLayout.nu64("ownerTradeFeeDenominator"),
-    BufferLayout.nu64("ownerWithdrawFeeNumerator"),
-    BufferLayout.nu64("ownerWithdrawFeeDenominator"),
-    BufferLayout.nu64("hostFeeNumerator"),
-    BufferLayout.nu64("hostFeeDenominator"),
-  ],
-  "fees"
-);
-
 export const TokenSwapLayoutLegacyV0 = BufferLayout.struct([
   BufferLayout.u8("isInitialized"),
   BufferLayout.u8("nonce"),
