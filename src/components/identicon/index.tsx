@@ -14,6 +14,7 @@ export const Identicon = (props: {
 
   useEffect(() => {
     if (address && ref.current) {
+      console.log("identicon useEffect")
       ref.current.innerHTML = "";
       ref.current.className = props.className || "";
       ref.current.appendChild(

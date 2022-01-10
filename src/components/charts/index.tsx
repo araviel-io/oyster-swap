@@ -47,6 +47,7 @@ const FlashText = (props: { text: string; val: number }) => {
   const [activeClass, setActiveClass] = useState("");
   const [value] = useState(props.val);
   useEffect(() => {
+    console.log("charts useEffect")
     if (props.val !== value) {
       setActiveClass(props.val > value ? "flash-positive" : "flash-negative");
 

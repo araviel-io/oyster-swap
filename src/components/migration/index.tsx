@@ -133,6 +133,7 @@ export const MigrationModal = () => {
   }, [executing, setVisable, setAck]);
 
   useEffect(() => {
+    console.log("charts migration")
     if (poolsToMigrate.length > 0 && !ack) {
       setVisable(true);
     }

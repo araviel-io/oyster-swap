@@ -87,6 +87,7 @@ export function MarketProvider({ children = null as any }) {
   }, [pools]);
 
   useEffect(() => {
+    console.log("charts marketByMint")
     let timer = 0;
     let bonfidaTimer = 0;
 

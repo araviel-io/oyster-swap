@@ -10,9 +10,6 @@ import { Button, Modal } from "antd";
 import {
   WalletAdapter,
   LedgerWalletAdapter,
-  SolongWalletAdapter,
-  PhantomWalletAdapter,
-  MathWalletAdapter,
 } from "../wallet-adapters";
 import { useConnectionConfig } from "../utils/connection";
 import { useLocalStorageState } from "../utils/utils";
@@ -36,24 +33,6 @@ export const WALLET_PROVIDERS = [
     url: "https://www.ledger.com",
     icon: `${ASSET_URL}/ledger.svg`,
     adapter: LedgerWalletAdapter,
-  },
-  {
-    name: "Solong",
-    url: "https://www.solong.com",
-    icon: `${ASSET_URL}/solong.png`,
-    adapter: SolongWalletAdapter,
-  },
-  {
-    name: "MathWallet",
-    url: "https://www.mathwallet.org",
-    icon: `${ASSET_URL}/mathwallet.svg`,
-    adapter: MathWalletAdapter,
-  },
-  {
-    name: "Phantom",
-    url: "https://www.phantom.app",
-    icon: `https://www.phantom.app/img/logo.png`,
-    adapter: PhantomWalletAdapter,
   },
 ];
 
