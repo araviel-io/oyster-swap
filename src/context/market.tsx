@@ -96,7 +96,7 @@ export function MarketProvider({ children = null as any }) {
 
       timer = window.setTimeout(() => updateData(), REFRESH_INTERVAL);
     };
-
+    /*
     const bonfidaQuery = async () => {
       try {
         const resp = await window.fetch(
@@ -118,7 +118,8 @@ export function MarketProvider({ children = null as any }) {
         BONFIDA_POOL_INTERVAL
       );
     };
-
+    */
+/*
     const initalQuery = async () => {
       const reverseSerumMarketCache = new Map<string, string>();
       [...marketByMint.keys()].forEach((mint) => {
@@ -138,12 +139,12 @@ export function MarketProvider({ children = null as any }) {
         allMarkets.filter((a) => cache.get(a) === undefined),
         "single"
       ).then(({ keys, array }) => {
-        allMarkets.forEach(() => {});
+        allMarkets.forEach(() => { });
 
         return array.map((item, index) => {
           const marketAddress = keys[index];
           const mintAddress = reverseSerumMarketCache.get(marketAddress);
-          if (mintAddress  && item) {
+          if (mintAddress && item) {
             const market = marketByMint.get(mintAddress);
 
             if (market) {
@@ -202,11 +203,11 @@ export function MarketProvider({ children = null as any }) {
       marketEmitter.raiseMarketUpdated(new Set([...marketByMint.keys()]));
 
       // start update loop
-      updateData();
-      bonfidaQuery();
+      //updateData();
+      // bonfidaQuery();
     };
-
-    initalQuery();
+*/
+    //initalQuery();
 
     return () => {
       window.clearTimeout(bonfidaTimer);
@@ -229,7 +230,7 @@ export function MarketProvider({ children = null as any }) {
       const info = marketByMint.get(mintAddress);
       const market = cache.get(info?.marketInfo.address.toBase58() || "");
       if (!market) {
-        return () => {};
+        return () => { };
       }
 
       // TODO: get recent volume
@@ -257,51 +258,17 @@ export function MarketProvider({ children = null as any }) {
   );
 
   return (
-    <MarketsContext.Provider
-      value={{
-        midPriceInUSD,
-        marketEmitter,
-        accountsToObserve,
-        marketByMint,
-        subscribeToMarket,
-        dailyVolume: dailyVolume,
-      }}
-    >
-      {children}
-    </MarketsContext.Provider>
+    <div></div>
   );
 }
 
-export const useMarkets = () => {
+export const useMarketss = () => {
+  console.log("serum useMarkets")
   const context = useContext(MarketsContext);
   return context as MarketsContextState;
 };
 
-export const useMidPriceInUSD = (mint: string) => {
-  const { midPriceInUSD, subscribeToMarket, marketEmitter } = useContext(
-    MarketsContext
-  ) as MarketsContextState;
-  const [price, setPrice] = useState<number>(0);
 
-  useEffect(() => {
-    let subscription = subscribeToMarket(mint);
-    const update = () => {
-      if (midPriceInUSD) {
-        setPrice(midPriceInUSD(mint));
-      }
-    };
-
-    update();
-    const dispose = marketEmitter.onMarket(update);
-
-    return () => {
-      subscription();
-      dispose();
-    };
-  }, [midPriceInUSD, mint, marketEmitter, subscribeToMarket]);
-
-  return { price, isBase: price === 1.0 };
-};
 
 export const useEnrichedPools = (pools: PoolInfo[]) => {
   const context = useContext(MarketsContext);
@@ -311,9 +278,11 @@ export const useEnrichedPools = (pools: PoolInfo[]) => {
   const marketEmitter = context?.marketEmitter;
   const marketsByMint = context?.marketByMint;
   const dailyVolume = context?.dailyVolume;
-
+  console.log("serum useEnrichedPools", context)
+  /*
   useEffect(() => {
     if (!marketEmitter || !subscribeToMarket || !marketsByMint) {
+      console.log("ISSUE")
       return;
     }
 
@@ -329,7 +298,7 @@ export const useEnrichedPools = (pools: PoolInfo[]) => {
 
     const dispose = marketEmitter.onMarket(update);
 
-    update();
+    //update();
 
     return () => {
       dispose && dispose();
@@ -343,7 +312,8 @@ export const useEnrichedPools = (pools: PoolInfo[]) => {
     marketEmitter,
     marketsByMint,
   ]);
-
+*/
+  console.log("enriched : ", enriched)
   return enriched;
 };
 
@@ -360,7 +330,7 @@ function createEnrichedPools(
   tokenMap: KnownTokenMap
 ) {
   const TODAY = new Date();
-
+  console.log("serum createEnrichedPools")
   if (!marketByMint) {
     return [];
   }
@@ -376,7 +346,7 @@ function createEnrichedPools(
 
       const account0 = cache.getAccount(p.pubkeys.holdingAccounts[0]);
       const account1 = cache.getAccount(p.pubkeys.holdingAccounts[1]);
-      
+
       const accountA =
         account0?.info.mint.toBase58() === mints[0] ? account0 : account1;
       const accountB =
@@ -438,7 +408,7 @@ function createEnrichedPools(
             // Aproximation not true for all pools we need to fine a better way
             const daysSinceInception = Math.floor(
               (TODAY.getTime() - INITAL_LIQUIDITY_DATE.getTime()) /
-                (24 * 3600 * 1000)
+              (24 * 3600 * 1000)
             );
             const apy0 =
               parseFloat(
@@ -525,7 +495,7 @@ function calculateAirdropYield(
           acc +
           // airdrop yield
           ((item.amount * midPrice) / (baseReserveUSD + quoteReserveUSD)) *
-            (365 / 30);
+          (365 / 30);
       }
 
       return acc;
@@ -535,6 +505,7 @@ function calculateAirdropYield(
 }
 
 const OrderBookParser = (id: PublicKey, acc: AccountInfo<Buffer>) => {
+  console.log("serum OrderBookParser")
   const decoded = Orderbook.LAYOUT.decode(acc.data);
 
   const details = {
@@ -549,6 +520,7 @@ const OrderBookParser = (id: PublicKey, acc: AccountInfo<Buffer>) => {
 };
 
 const getMidPrice = (marketAddress?: string, mintAddress?: string) => {
+  console.log("serum getMidPrice")
   const SERUM_TOKEN = TOKEN_MINTS.find(
     (a) => a.address.toBase58() === mintAddress
   );

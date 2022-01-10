@@ -17,18 +17,18 @@ export function Routes() {
         <ConnectionProvider>
           <WalletProvider>
             <AccountsProvider>
-              <MarketProvider>
+              
                 <CurrencyPairProvider>
                   <Route exact path="/" component={ExchangeView} />
                   <Route exact path="/add" component={ExchangeView} />
                   <Route exact path="/info" component={() => <ChartsView />} />
-                  <Route
+                  {/*<Route
                     exact
                     path="/pool"
                     component={() => <PoolOverview />}
-                  />
+                  /> */}
                 </CurrencyPairProvider>
-              </MarketProvider>
+              
             </AccountsProvider>
           </WalletProvider>
         </ConnectionProvider>

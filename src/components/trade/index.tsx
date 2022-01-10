@@ -146,32 +146,32 @@ export const TradeEntry = () => {
         size="large"
         onClick={connected ? handleSwap : connect}
         style={{ width: "100%" }}
-        disabled={true}
-        // disabled={
-        //   connected &&
-        //   (pendingTx ||
-        //     !A.account ||
-        //     !B.mintAddress ||
-        //     A.account === B.account ||
-        //     !A.sufficientBalance() ||
-        //     !pool)
-        // }
+
+        disabled={
+          connected &&
+          (pendingTx ||
+            !A.account ||
+            !B.mintAddress ||
+            A.account === B.account ||
+            !A.sufficientBalance() ||
+            !pool)
+        }
       >
-        {/*{generateActionLabel(*/}
-        {/*  !pool*/}
-        {/*    ? POOL_NOT_AVAILABLE(*/}
-        {/*        getTokenName(tokenMap, A.mintAddress),*/}
-        {/*        getTokenName(tokenMap, B.mintAddress)*/}
-        {/*      )*/}
-        {/*    : SWAP_LABEL,*/}
-        {/*  connected,*/}
-        {/*  tokenMap,*/}
-        {/*  A,*/}
-        {/*  B,*/}
-        {/*  true*/}
-        {/*)}*/}
-        {/*{pendingTx && <Spin indicator={antIcon} className="add-spinner" />}*/}
-        Swap is being deprecated
+        {generateActionLabel(
+          !pool
+            ? POOL_NOT_AVAILABLE(
+              getTokenName(tokenMap, A.mintAddress),
+              getTokenName(tokenMap, B.mintAddress)
+            )
+            : SWAP_LABEL,
+          connected,
+          tokenMap,
+          A,
+          B,
+          true
+        )}
+        {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
+        Swap
       </Button>
       <TradeInfo pool={pool} />
     </>
@@ -183,44 +183,48 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
   const { pool } = props;
   const { slippage } = useSlippageConfig();
   const pools = useMemo(() => (pool ? [pool] : []), [pool]);
-  const enriched = useEnrichedPools(pools);
+  //const enriched = useEnrichedPools(pools);
 
   const [amountOut, setAmountOut] = useState(0);
   const [priceImpact, setPriceImpact] = useState(0);
   const [lpFee, setLpFee] = useState(0);
   const [exchangeRate, setExchangeRate] = useState(0);
   const [priceAccount, setPriceAccount] = useState("");
-
+/*
   useEffect(() => {
-    if (!pool || enriched.length === 0) {
-      return;
-    }
-    if (B.amount) {
-      const minAmountOut = parseFloat(B?.amount) * (1 - slippage);
-      setAmountOut(minAmountOut);
-    }
-    const liqA = enriched[0].liquidityA;
-    const liqB = enriched[0].liquidityB;
-    const supplyRatio = liqA / liqB;
-    // We need to make sure the order matched the pool's accounts order
-    const enrichedA = A.mintAddress === enriched[0].mints[0] ? A : B;
-    const enrichedB = enrichedA.mintAddress === A.mintAddress ? B : A;
-    const calculatedRatio =
-      parseFloat(enrichedA.amount) / parseFloat(enrichedB.amount);
-    // % difference between pool ratio and  calculated ratio
-    setPriceImpact(Math.abs(100 - (calculatedRatio * 100) / supplyRatio));
+   
+      console.log("index.tsx priceImpact : ", priceImpact)
+      if (!pool || enriched.length === 0) {
+        console.log("index.tsxenrichedenculed")
+        return;
+      }
+      if (B.amount) {
+        const minAmountOut = parseFloat(B?.amount) * (1 - slippage);
+        setAmountOut(minAmountOut);
+      }
+      const liqA = enriched[0].liquidityA;
+      const liqB = enriched[0].liquidityB;
+      const supplyRatio = liqA / liqB;
+      // We need to make sure the order matched the pool's accounts order
+      const enrichedA = A.mintAddress === enriched[0].mints[0] ? A : B;
+      const enrichedB = enrichedA.mintAddress === A.mintAddress ? B : A;
+      const calculatedRatio =
+        parseFloat(enrichedA.amount) / parseFloat(enrichedB.amount);
+      // % difference between pool ratio and  calculated ratio
+      setPriceImpact(Math.abs(100 - (calculatedRatio * 100) / supplyRatio));
 
-    // 6 decimals without trailing zeros
-    const lpFeeStr = (parseFloat(A.amount) * LIQUIDITY_PROVIDER_FEE).toFixed(6);
-    setLpFee(parseFloat(lpFeeStr));
+      // 6 decimals without trailing zeros
+      const lpFeeStr = (parseFloat(A.amount) * LIQUIDITY_PROVIDER_FEE).toFixed(6);
+      setLpFee(parseFloat(lpFeeStr));
 
-    if (priceAccount === B.mintAddress) {
-      setExchangeRate(parseFloat(B.amount) / parseFloat(A.amount));
-    } else {
-      setExchangeRate(parseFloat(A.amount) / parseFloat(B.amount));
-    }
-  }, [A, B, slippage, pool, enriched, priceAccount]);
-
+      if (priceAccount === B.mintAddress) {
+        setExchangeRate(parseFloat(B.amount) / parseFloat(A.amount));
+      } else {
+        setExchangeRate(parseFloat(A.amount) / parseFloat(B.amount));
+      }
+    
+    }, [A, B, slippage, pool, priceAccount]);
+*/
   const handleSwapPriceInfo = () => {
     if (priceAccount !== B.mintAddress) {
       setPriceAccount(B.mintAddress);
