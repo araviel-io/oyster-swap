@@ -19,7 +19,7 @@ import { EventEmitter } from "./eventEmitter";
 const AccountsContext = React.createContext<any>(null);
 
 //TODO:EMITTER CALL
-const accountEmitter = new EventEmitter();
+//const accountEmitter = new EventEmitter();
 
 const pendingMintCalls = new Map<string, Promise<MintInfo>>();
 const mintCache = new Map<string, MintInfo>();
@@ -202,7 +202,7 @@ export const cache = {
   deleteAccount: (pubkey: PublicKey) => {
     const id = pubkey?.toBase58();
     accountsCache.delete(id);
-    accountEmitter.raiseAccountUpdated(id);
+    //accountEmitter.raiseAccountUpdated(id);
   },
   getAccount: (pubKey: string | PublicKey) => {
     let key: string;
@@ -441,10 +441,10 @@ export function AccountsProvider({ children = null as any }) {
 
         setTokenAccounts(accounts);
       });
-
+/*
       const dispose = accountEmitter.onAccount(() => {
         setTokenAccounts(selectUserAccounts());
-      });
+      });*/
 
       // This can return different types of accounts: token-account, mint, multisig
       // TODO: web3.js expose ability to filter. discuss filter syntax
@@ -469,7 +469,7 @@ export function AccountsProvider({ children = null as any }) {
               accountsCache.has(id)
             ) {
               accountsCache.set(id, details);
-              accountEmitter.raiseAccountUpdated(id);
+              //accountEmitter.raiseAccountUpdated(id);
             }
           } else if (info.accountInfo.data.length === MintLayout.span) {
             if (mintCache.has(id)) {
@@ -478,7 +478,7 @@ export function AccountsProvider({ children = null as any }) {
               mintCache.set(id, mint);
             }
 
-            accountEmitter.raiseAccountUpdated(id);
+            //accountEmitter.raiseAccountUpdated(id);
           }
 
           if (genericCache.has(id)) {
@@ -490,7 +490,7 @@ export function AccountsProvider({ children = null as any }) {
 
       return () => {
         connection.removeProgramAccountChangeListener(tokenSubID);
-        dispose();
+        //dispose();
       };
     }
   }, [connection, connected, publicKey, selectUserAccounts]);
@@ -591,7 +591,7 @@ export function useMint(key?: string | PublicKey) {
         })
       );
 
-    const dispose = accountEmitter.onAccount((e) => {
+    /*const dispose = accountEmitter.onAccount((e) => {
       const event = e;
       if (event.id === id) {
         cache.queryMint(connection, id).then(setMint);
@@ -599,7 +599,7 @@ export function useMint(key?: string | PublicKey) {
     });
     return () => {
       dispose();
-    };
+    };*/
   }, [connection, id]);
 
   return mint;
@@ -640,7 +640,7 @@ export function useAccount(pubKey?: PublicKey) {
 
     query();
 
-    const dispose = accountEmitter.onAccount((e) => {
+    /*const dispose = accountEmitter.onAccount((e) => {
       const event = e;
       if (event.id === key) {
         query();
@@ -648,7 +648,7 @@ export function useAccount(pubKey?: PublicKey) {
     });
     return () => {
       dispose();
-    };
+    };*/
   }, [connection, key]);
 
   return account;

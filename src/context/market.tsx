@@ -46,7 +46,7 @@ export const BONFIDA_POOL_INTERVAL = 30 * 60_000; // 30 min
 
 const MarketsContext = React.createContext<MarketsContextState | null>(null);
 
-const marketEmitter = new EventEmitter();
+//const marketEmitter = new EventEmitter();
 
 export function MarketProvider({ children = null as any }) {
   const { endpoint } = useConnectionConfig();
@@ -93,9 +93,9 @@ export function MarketProvider({ children = null as any }) {
 
     const updateData = async () => {
       await refreshAccounts(connection, [...accountsToObserve.keys()]);
-      marketEmitter.raiseMarketUpdated(new Set([...marketByMint.keys()]));
+      //marketEmitter.raiseMarketUpdated(new Set([...marketByMint.keys()]));
 
-      timer = window.setTimeout(() => updateData(), REFRESH_INTERVAL);
+      //timer = window.setTimeout(() => updateData(), REFRESH_INTERVAL);
     };
     /*
     const bonfidaQuery = async () => {
