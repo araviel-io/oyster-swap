@@ -191,18 +191,18 @@ export const AddToLiquidity = () => {
       className="add-button"
       onClick={() => executeAction(pool)}
       trigger={["click"]}
-      // disabled={
-      //   connected &&
-      //   (depositType === "both"
-      //     ? pendingTx ||
-      //       !A.account ||
-      //       !B.account ||
-      //       A.account === B.account ||
-      //       !hasSufficientBalance
-      //     : !getDepositToken()?.account ||
-      //       !getDepositToken()?.sufficientBalance())
-      // }
-      disabled={true}
+       disabled={
+         connected &&
+         (depositType === "both"
+           ? pendingTx ||
+             !A.account ||
+             !B.account ||
+            A.account === B.account ||
+             !hasSufficientBalance
+           : !getDepositToken()?.account ||
+             !getDepositToken()?.sufficientBalance())
+       }
+      
       type="primary"
       size="large"
       overlay={
@@ -213,16 +213,16 @@ export const AddToLiquidity = () => {
         />
       }
     >
-      {/*{depositType === "both"*/}
-      {/*  ? generateActionLabel(*/}
-      {/*      pool ? ADD_LIQUIDITY_LABEL : CREATE_POOL_LABEL,*/}
-      {/*      connected,*/}
-      {/*      tokenMap,*/}
-      {/*      A,*/}
-      {/*      B*/}
-      {/*    )*/}
-      {/*  : generateExactOneLabel(connected, tokenMap, getDepositToken())}*/}
-      {/*{pendingTx && <Spin indicator={antIcon} className="add-spinner" />}*/}
+      {depositType === "both"
+        ? generateActionLabel(
+            pool ? ADD_LIQUIDITY_LABEL : CREATE_POOL_LABEL,
+            connected,
+            tokenMap,
+            A,
+            B
+          )
+       : generateExactOneLabel(connected, tokenMap, getDepositToken())}
+      {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
       Swap is being deprecated
     </Dropdown.Button>
   );

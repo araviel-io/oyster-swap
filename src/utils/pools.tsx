@@ -419,6 +419,7 @@ export const swap = async (
     type: "success",
     description: `Transaction - ${tx}`,
   });
+  //TODO:ARA : add eventemitter udpate account
 };
 
 export const addLiquidity = async (
@@ -704,6 +705,7 @@ export const useOwnedPools = (legacy = false) => {
       return acc;
     }, new Map<string, TokenAccount[]>());
 
+    console.log("utils/pools.tsx", pools, userAccounts)
     return pools
       .filter((p) => map.has(p.pubkeys.mint.toBase58()) && p.legacy === legacy)
       .map((item) => {
@@ -721,6 +723,7 @@ export const useOwnedPools = (legacy = false) => {
         }[];
       })
       .flat();
+      
   }, [pools, userAccounts, legacy]);
 
   return ownedPools;
