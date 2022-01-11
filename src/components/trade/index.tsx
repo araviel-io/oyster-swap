@@ -171,7 +171,7 @@ export const TradeEntry = () => {
           true
         )}
         {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
-        Swap
+
       </Button>
       <TradeInfo pool={pool} />
     </>

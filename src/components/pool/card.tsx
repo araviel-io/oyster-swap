@@ -9,7 +9,7 @@ import { useEnrichedPools } from "../../context/market";
 import { formatNumber, formatPct, formatUSD } from "../../utils/utils";
 import { ExplorerLink } from "../explorerLink";
 import { SupplyOverview } from "./supplyOverview";
-import { HistoricalLiquidity, HistoricalVolume } from "../charts/historical";
+
 import { LineChartOutlined, AlignLeftOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
@@ -262,14 +262,7 @@ export const PoolCard = (props: { pool: PoolInfo; account?: TokenAccount }) => {
       )}
       {displayMode === "chart" && (
         <>
-          <HistoricalLiquidity
-            pool={pool}
-            current={formatUSD.format(enriched.liquidity)}
-          />
-          <HistoricalVolume
-            pool={pool}
-            current={formatUSD.format(enriched.volume24h)}
-          />
+
         </>
       )}
       {displayMode === "remove" && account && (
