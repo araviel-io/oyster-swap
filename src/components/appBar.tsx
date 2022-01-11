@@ -24,24 +24,6 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
               Swap
             </Link>
           </Menu.Item>
-          <Menu.Item key="/add">
-            <Link
-              to={{
-                pathname: "/add",
-              }}
-            >
-              Pool
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="/info">
-            <Link
-              to={{
-                pathname: "/info",
-              }}
-            >
-              Charts
-            </Link>
-          </Menu.Item>
           <Menu.Item key="trade">
             <a
               href={"https://dex.projectserum.com"}

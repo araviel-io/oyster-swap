@@ -5,8 +5,6 @@ import { WalletProvider } from "./context/wallet";
 import { ConnectionProvider } from "./utils/connection";
 import { AccountsProvider } from "./utils/accounts";
 import { CurrencyPairProvider } from "./utils/currencyPair";
-import { MarketProvider } from "./context/market";
-import { PoolOverview } from "./components/pool/view";
 import { ExchangeView } from "./components/exchange";
 
 export function Routes() {
