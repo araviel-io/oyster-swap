@@ -598,49 +598,10 @@ export const usePools = () => {
       setPools(all.flat());
     });
   }, [connection]);
-
+/*
   useEffect(() => {
     const subID = connection.onProgramAccountChange(
-      programIds().swap,
-      async (info) => {
-        const id = (info.accountId as unknown) as string;
-        if (info.accountInfo.data.length === programIds().swapLayout.span) {
-          const account = info.accountInfo;
-          const updated = {
-            data: programIds().swapLayout.decode(account.data),
-            account: account,
-            pubkey: new PublicKey(id),
-          };
-
-          const index =
-            pools &&
-            pools.findIndex((p) => p.pubkeys.account.toBase58() === id);
-          if (index && index >= 0 && pools) {
-            // TODO: check if account is empty?
-
-            const filtered = pools.filter((p, i) => i !== index);
-            setPools([...filtered, toPoolInfo(updated, programIds().swap)]);
-          } else {
-            let pool = toPoolInfo(updated, programIds().swap);
-
-            pool.pubkeys.feeAccount = new PublicKey(updated.data.feeAccount);
-            pool.pubkeys.holdingMints = [
-              new PublicKey(updated.data.mintA),
-              new PublicKey(updated.data.mintB),
-            ] as PublicKey[];
-
-            setPools([...pools, pool]);
-          }
-        }
-      },
-      "singleGossip"
-    );
-
-    return () => {
-      connection.removeProgramAccountChangeListener(subID);
-    };
-  }, [connection, pools]);
-
+   */
   return { pools };
 };
 
@@ -722,7 +683,7 @@ export const useOwnedPools = (legacy = false) => {
       })
       .flat();
   }, [pools, userAccounts, legacy]);
-
+console.log("ownedPools ", ownedPools)
   return ownedPools;
 };
 

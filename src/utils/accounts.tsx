@@ -415,9 +415,12 @@ export function AccountsProvider({ children = null as any }) {
   }, [nativeAccount, publicKey, tokenAccounts]);
 
   useEffect(() => {
+    
     if (!connection || !publicKey) {
+      console.log("IF account.tsx useEffect")
       setTokenAccounts([]);
     } else {
+      console.log("else account.tsx useEffect")
       // cache host accounts to avoid query during swap
       precacheUserTokenAccounts(connection, SWAP_HOST_FEE_ADDRESS);
 
@@ -468,7 +471,7 @@ export function AccountsProvider({ children = null as any }) {
               accountsCache.has(id)
             ) {
               accountsCache.set(id, details);
-              accountEmitter.raiseAccountUpdated(id);
+              //accountEmitter.raiseAccountUpdated(id);
             }
           } else if (info.accountInfo.data.length === MintLayout.span) {
             if (mintCache.has(id)) {
@@ -477,7 +480,7 @@ export function AccountsProvider({ children = null as any }) {
               mintCache.set(id, mint);
             }
 
-            accountEmitter.raiseAccountUpdated(id);
+            //accountEmitter.raiseAccountUpdated(id);
           }
 
           if (genericCache.has(id)) {
