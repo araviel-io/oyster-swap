@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { PoolInfo } from "../../models";
 import { useEnrichedPools } from "./../../context/market";
-import echarts from "echarts";
+//import echarts from "echarts";
 import { formatNumber, formatUSD } from "../../utils/utils";
 
 export const SupplyOverview = (props: { pool?: PoolInfo }) => {
@@ -9,7 +9,7 @@ export const SupplyOverview = (props: { pool?: PoolInfo }) => {
   const pools = useMemo(() => (pool ? [pool] : []), [pool]);
   const enriched = useEnrichedPools(pools);
   const chartDiv = useRef<HTMLDivElement>(null);
-
+/*
   // dispose chart
   useEffect(() => {
     const div = chartDiv.current;
@@ -95,6 +95,6 @@ export const SupplyOverview = (props: { pool?: PoolInfo }) => {
   if (enriched.length === 0) {
     return null;
   }
-
-  return <div ref={chartDiv} style={{ height: 150, width: "100%" }} />;
+*/
+  return <div style={{ height: 150, width: "100%" }} />;
 };

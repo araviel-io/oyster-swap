@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Card, Spin, Typography } from "antd";
 import "./styles.less";
-import echarts from "echarts";
+//import echarts from "echarts";
 import { PoolInfo } from "../../models";
 import { PoolIcon } from "../tokenIcon";
 import { formatShortDate, getPoolName } from "../../utils/utils";
@@ -115,6 +115,7 @@ export const PoolLineChart = React.memo(
         });
       }
     };
+    /*
     useEffect(() => {
       if (chartDiv.current) {
         echartsRef.current = echarts.init(chartDiv.current);
@@ -126,6 +127,7 @@ export const PoolLineChart = React.memo(
       };
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // needs to only be called on mount an unmount
+    */
     return (
       <>
         {loading && <Spin tip="Loading..." />}

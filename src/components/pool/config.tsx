@@ -168,15 +168,15 @@ export const PoolConfigCard = (props: {
               })
             }
           >
-            <Option value={CurveType.ConstantProduct.toString()}>
+            {/*<Option value={CurveType.ConstantProduct.toString()}>
               Constant Product
-            </Option>
+          </Option>*/}
             <Option value={CurveType.ConstantPrice.toString()}>
               Constant Price
             </Option>
-            <Option value={CurveType.ConstantProductWithOffset.toString()}>
+            {/*<Option value={CurveType.ConstantProductWithOffset.toString()}>
               Offset Constant Product
-            </Option>
+            </Option>*/}
           </Select>
         </>
         {props.options.curveType === CurveType.ConstantPrice && (

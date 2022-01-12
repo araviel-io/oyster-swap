@@ -25,7 +25,7 @@ import {
 import { PoolIcon } from "../tokenIcon";
 import { Input } from "antd";
 import "./styles.less";
-import echarts from "echarts";
+//import echarts from "echarts";
 import { useEnrichedPools } from "../../context/market";
 import { usePools } from "../../utils/pools";
 import {
@@ -82,6 +82,7 @@ export const ChartsView = React.memo(() => {
     DEFAULT_DISPLAY_TYPE
   );
 
+  /*
   useEffect(() => {
     if (chartDiv.current) {
       echartsRef.current = echarts.init(chartDiv.current);
@@ -91,7 +92,7 @@ export const ChartsView = React.memo(() => {
       echartsRef.current.dispose();
     };
   }, []);
-
+*/
   // TODO: display user percent in the pool
   // const { ownedPools } = useOwnedPools();
 

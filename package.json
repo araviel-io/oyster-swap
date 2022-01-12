@@ -14,7 +14,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@types/echarts": "^4.9.0",
     "@types/react-router-dom": "^5.1.6",
     "cross-fetch": "3.0.6",
     "antd": "^4.6.6",
@@ -22,13 +21,11 @@
     "bs58": "^4.0.1",
     "buffer-layout": "^1.2.0",
     "craco-less": "^1.17.0",
-    "echarts": "^4.9.0",
     "eventemitter3": "^4.0.7",
     "identicon.js": "^2.3.3",
     "jazzicon": "^1.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-github-btn": "^1.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "typescript": "^4.0.0"
@@ -73,8 +70,6 @@
     "@types/node": "^12.12.62",
     "@types/react": "^16.9.50",
     "@types/react-dom": "^16.9.8",
-    "arweave-deploy": "^1.9.1",
-    "gh-pages": "^3.1.0",
     "prettier": "^2.1.2"
   }
 }

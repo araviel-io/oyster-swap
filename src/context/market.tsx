@@ -85,7 +85,7 @@ export function MarketProvider({ children = null as any }) {
       return acc;
     }, new Map<string, SerumMarket>()) as Map<string, SerumMarket>;
   }, [pools]);
-
+/*
   useEffect(() => {
     let timer = 0;
     let bonfidaTimer = 0;
@@ -213,7 +213,7 @@ export function MarketProvider({ children = null as any }) {
       window.clearTimeout(timer);
     };
   }, [pools, marketByMint, accountsToObserve, connection]);
-
+*/
   const midPriceInUSD = useCallback(
     (mintAddress: string) => {
       return getMidPrice(
