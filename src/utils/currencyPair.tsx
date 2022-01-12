@@ -22,7 +22,7 @@ import {
 import { convert, getTokenIcon, getTokenName } from "./utils";
 import { useHistory, useLocation } from "react-router-dom";
 import bs58 from "bs58";
-import { TokenInfo } from "@solana/spl-token-registry";
+import { ENV, TokenInfo } from "./clist";
 
 export interface CurrencyContextState {
   mintAddress: string;
@@ -90,18 +90,42 @@ export const useCurrencyLeg = (config: PoolConfig, defaultMint?: string) => {
     ]
   );
 };
+interface CLTokenInfo {
+  chainId: number;
+  address: string;
+  name: string;
+  decimals: number;
+  symbol: string;
+  logoURI?: string;
+  tags?: string[];
+}
 
 export function CurrencyPairProvider({ children = null as any }) {
   const connection = useConnection();
-  const { tokens } = useConnectionConfig();
-
+  const { env, tokens } = useConnectionConfig();
+  const [customtokenlist, setCustomtokenlist] = useState<TokenInfo[]>([])
   const history = useHistory();
   const location = useLocation();
   const [lastTypedAccount, setLastTypedAccount] = useState("");
   const [poolOperation, setPoolOperation] = useState<PoolOperation>(
     PoolOperation.Add
   );
+  /*
+  let tsliced = tokens.slice(0, 4);
+  setCustomtokenlist(tsliced)*/
 
+  console.log("tokens from CurrencyPairProvider useConnectionConfig() : ", tokens)
+  console.log("connection : ", env)
+
+
+
+ /* useEffect(() => {
+    var tsliced = tokens.slice(0, 4);
+    setCustomtokenlist(tsliced)
+  }, []);*/
+  console.log("customtokenlist : ", customtokenlist)
+  //TODO: Ara: pool fees & curve
+  // tokens.push()
   const [options, setOptions] = useState<PoolConfig>({
     curveType: CurveType.ConstantProduct,
     fees: {
@@ -178,13 +202,13 @@ export function CurrencyPairProvider({ children = null as any }) {
 
     setMintAddressA(
       tokens.find((t) => t.symbol === defaultBase)?.address ||
-        (isValidAddress(defaultBase) ? defaultBase : "") ||
-        ""
+      (isValidAddress(defaultBase) ? defaultBase : "") ||
+      ""
     );
     setMintAddressB(
       tokens.find((t) => t.symbol === defaultQuote)?.address ||
-        (isValidAddress(defaultQuote) ? defaultQuote : "") ||
-        ""
+      (isValidAddress(defaultQuote) ? defaultQuote : "") ||
+      ""
     );
     // mintAddressA and mintAddressB are not included here to prevent infinite loop
     // eslint-disable-next-line

@@ -36,7 +36,7 @@ export class EventEmitter {
   }
 
   raiseAccountUpdated(id: string) {
-    console.log("event emitter MarketUpdateEvent")
+    console.log("event emitter MarketUpdateEvent", id)
     this.emitter.emit(AccountUpdateEvent.type, new AccountUpdateEvent(id));
   }
 

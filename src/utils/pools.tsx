@@ -319,7 +319,7 @@ export const swap = async (
   const minAmountOut = components[1].amount * (1 - SLIPPAGE);
   const holdingA =
     pool.pubkeys.holdingMints[0]?.toBase58() ===
-    components[0].account.info.mint.toBase58()
+      components[0].account.info.mint.toBase58()
       ? pool.pubkeys.holdingAccounts[0]
       : pool.pubkeys.holdingAccounts[1];
   const holdingB =
@@ -376,14 +376,14 @@ export const swap = async (
 
   let hostFeeAccount = SWAP_HOST_FEE_ADDRESS
     ? findOrCreateAccountByMint(
-        wallet.publicKey,
-        SWAP_HOST_FEE_ADDRESS,
-        instructions,
-        cleanupInstructions,
-        accountRentExempt,
-        pool.pubkeys.mint,
-        signers
-      )
+      wallet.publicKey,
+      SWAP_HOST_FEE_ADDRESS,
+      instructions,
+      cleanupInstructions,
+      accountRentExempt,
+      pool.pubkeys.mint,
+      signers
+    )
     : undefined;
 
   // swap
@@ -494,15 +494,15 @@ export const usePools = () => {
             data: undefined as any,
             account: item.account,
             pubkey: item.pubkey,
-            init: async () => {},
+            init: async () => { },
           };
 
           const layout =
             item.account.data.length === TokenSwapLayout.span
               ? TokenSwapLayout
               : item.account.data.length === TokenSwapLayoutV1.span
-              ? TokenSwapLayoutV1
-              : TokenSwapLayoutV0;
+                ? TokenSwapLayoutV1
+                : TokenSwapLayoutV0;
 
           // handling of legacy layout can be removed soon...
           if (layout === TokenSwapLayoutV0) {
@@ -588,7 +588,7 @@ export const usePools = () => {
           }).filter(a => !!a) as any[];
         }
       );
-
+      console.log("poolsAray", poolsArray)
       return poolsArray;
     };
 
@@ -601,45 +601,52 @@ export const usePools = () => {
   }, [connection]);
 
   useEffect(() => {
-    const subID = connection.onProgramAccountChange(
-      programIds().swap,
-      async (info) => {
-        const id = (info.accountId as unknown) as string;
-        if (info.accountInfo.data.length === programIds().swapLayout.span) {
-          const account = info.accountInfo;
-          const updated = {
-            data: programIds().swapLayout.decode(account.data),
-            account: account,
-            pubkey: new PublicKey(id),
-          };
 
-          const index =
-            pools &&
-            pools.findIndex((p) => p.pubkeys.account.toBase58() === id);
-          if (index && index >= 0 && pools) {
-            // TODO: check if account is empty?
+    try {
+      const subID = connection.onProgramAccountChange(
+        programIds().swap,
+        async (info) => {
+          const id = (info.accountId as unknown) as string;
+          if (info.accountInfo.data.length === programIds().swapLayout.span) {
+            const account = info.accountInfo;
+            const updated = {
+              data: programIds().swapLayout.decode(account.data),
+              account: account,
+              pubkey: new PublicKey(id),
+            };
 
-            const filtered = pools.filter((p, i) => i !== index);
-            setPools([...filtered, toPoolInfo(updated, programIds().swap)]);
-          } else {
-            let pool = toPoolInfo(updated, programIds().swap);
+            const index =
+              pools &&
+              pools.findIndex((p) => p.pubkeys.account.toBase58() === id);
+            if (index && index >= 0 && pools) {
+              // TODO: check if account is empty?
 
-            pool.pubkeys.feeAccount = new PublicKey(updated.data.feeAccount);
-            pool.pubkeys.holdingMints = [
-              new PublicKey(updated.data.mintA),
-              new PublicKey(updated.data.mintB),
-            ] as PublicKey[];
+              const filtered = pools.filter((p, i) => i !== index);
+              setPools([...filtered, toPoolInfo(updated, programIds().swap)]);
+            } else {
+              let pool = toPoolInfo(updated, programIds().swap);
 
-            setPools([...pools, pool]);
+              pool.pubkeys.feeAccount = new PublicKey(updated.data.feeAccount);
+              pool.pubkeys.holdingMints = [
+                new PublicKey(updated.data.mintA),
+                new PublicKey(updated.data.mintB),
+              ] as PublicKey[];
+
+              setPools([...pools, pool]);
+            }
           }
-        }
-      },
-      "singleGossip"
-    );
+        },
+        "singleGossip"
+      );
+      return () => {
+        connection.removeProgramAccountChangeListener(subID);
+      };
+    } catch (e) {
 
-    return () => {
-      connection.removeProgramAccountChangeListener(subID);
-    };
+    }
+
+
+
   }, [connection, pools]);
 
   return { pools };
@@ -723,7 +730,7 @@ export const useOwnedPools = (legacy = false) => {
         }[];
       })
       .flat();
-      
+
   }, [pools, userAccounts, legacy]);
 
   return ownedPools;

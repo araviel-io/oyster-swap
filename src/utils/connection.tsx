@@ -15,7 +15,8 @@ import {
   TokenListProvider,
   ENV as ChainID,
   TokenInfo,
-} from "@solana/spl-token-registry";
+  Strategy,
+} from "./clist";
 import { cache, getMultipleAccounts } from "./accounts";
 
 export type ENV = "mainnet-beta" | "testnet" | "devnet" | "localnet";
@@ -33,7 +34,7 @@ export const ENDPOINTS = [
   },
   {
     name: "devnet" as ENV,
-    endpoint: clusterApiUrl("devnet"),
+    endpoint: "https://api.devnet.solana.com/",
     chainID: ChainID.Devnet,
   },
   {
@@ -95,35 +96,47 @@ export function ConnectionProvider({ children = undefined as any }) {
 
   const [tokens, setTokens] = useState<TokenInfo[]>([]);
   const [tokenMap, setTokenMap] = useState<Map<string, TokenInfo>>(new Map());
+  console.log("Connection tokens : ",tokens)
+  //console.log("tokens : ",tokenMap)
   useEffect(() => {
     (async () => {
-      const res = await new TokenListProvider().resolve();
-      const list = res
-        .filterByChainId(chain.chainID)
-        .excludeByTag("nft")
-        .getList();
-      const knownMints = list.reduce((map, item) => {
-        map.set(item.address, item);
-        return map;
-      }, new Map<string, TokenInfo>());
+        const cuslist = true;
+        const res = await new TokenListProvider().resolve(Strategy.Static);
+        const list = res
+          .filterByChainId(chain.chainID)
+          .excludeByTag("nft")
+          .getList();
+        const knownMints = list.reduce((map, item) => {
+          map.set(item.address, item);
+          return map;
+        }, new Map<string, TokenInfo>());
 
-      const accounts = await getMultipleAccounts(connection, [...knownMints.keys()], 'single');
-      accounts.keys.forEach((key, index) => {
-        const account = accounts.array[index];
-        if(!account) {
-          knownMints.delete(accounts.keys[index]);
-          return;
-        }
+        const customMints = list.reduce((map, item) => {
+          map.set(item.address, item);
+          return map;
+        }, new Map<string, TokenInfo>());
+        //customMints.values
+        console.log("customMints : ", [...customMints.values()])
 
-        try {
-          cache.addMint(new PublicKey(key), account);
-        } catch {
-          // ignore
-        }
-      });
-
-      setTokenMap(knownMints);
-      setTokens([...knownMints.values()]);
+        const accounts = await getMultipleAccounts(connection, [...knownMints.keys()], 'single');
+        accounts.keys.forEach((key, index) => {
+          const account = accounts.array[index];
+          if(!account) {
+            knownMints.delete(accounts.keys[index]);
+            return;
+          }
+  
+          try {
+            cache.addMint(new PublicKey(key), account);
+          } catch {
+            // ignore
+          }
+        });
+  
+        setTokenMap(knownMints);
+        setTokens([...knownMints.values()]);
+  
+     
     })();
   }, [chain, connection]);
 
