@@ -79,7 +79,7 @@
     {
       "chainId": 103,
       "address": "2tWC4JAdL4AxEFJySziYJfsAnW2MHKRo98vbAPiRDSk8",
-      "symbol": "'d' USDC",
+      "symbol": "staUSD",
       "name": "'d' USDC",
       "decimals": 6,
       "logoURI": "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/CpMah17kQEL2wqyMKt3mZBdTnZbkbfx4nqmQMFDP5vwp/logo.png",
@@ -105,6 +105,29 @@
         "coingeckoId": "usd-coin",
         "website": "https://www.centre.io/"
       }
+    },
+    {
+      "chainId": 103,
+      "address": "Ren3RLPCG6hpKay86d2fQccQLuGG331UNxwn2VTw3GJ",
+      "symbol": "renBTC",
+      "name": "test renBTC",
+      "decimals": 8,
+      "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/ethereum/assets/0xEB4C2781e4ebA804CE9a9803C67d0893436bB27D/logo.png",
+      "tags": [
+        "stablecoin"
+      ]
+      
+    },
+    {
+      "chainId": 103,
+      "address": "Wbt2CgkkD3eVckD5XxWJmT8pTnFTyWrwvGM7bUMLvsM",
+      "symbol": "staBTC",
+      "name": "dev WBTC",
+      "decimals": 6,
+      "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png",
+      "tags": [
+        "stablecoin"
+      ]
     }
   ],
   "version": {
