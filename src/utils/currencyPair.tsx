@@ -22,7 +22,7 @@ import {
 import { convert, getTokenIcon, getTokenName } from "./utils";
 import { useHistory, useLocation } from "react-router-dom";
 import bs58 from "bs58";
-import { TokenInfo } from "@solana/spl-token-registry";
+import { TokenInfo } from "./clist";
 
 export interface CurrencyContextState {
   mintAddress: string;

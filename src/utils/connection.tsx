@@ -15,7 +15,8 @@ import {
   TokenListProvider,
   ENV as ChainID,
   TokenInfo,
-} from "@solana/spl-token-registry";
+  Strategy,
+} from "./clist";
 import { cache, getMultipleAccounts } from "./accounts";
 
 export type ENV = "mainnet-beta" | "testnet" | "devnet" | "localnet";
@@ -33,7 +34,7 @@ export const ENDPOINTS = [
   },
   {
     name: "devnet" as ENV,
-    endpoint: clusterApiUrl("devnet"),
+    endpoint: 'https://api.devnet.solana.com/',
     chainID: ChainID.Devnet,
   },
   {
@@ -97,7 +98,7 @@ export function ConnectionProvider({ children = undefined as any }) {
   const [tokenMap, setTokenMap] = useState<Map<string, TokenInfo>>(new Map());
   useEffect(() => {
     (async () => {
-      const res = await new TokenListProvider().resolve();
+      const res = await new TokenListProvider().resolve(Strategy.Static);
       const list = res
         .filterByChainId(chain.chainID)
         .excludeByTag("nft")
