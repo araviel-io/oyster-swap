@@ -59,90 +59,90 @@ export const AddToLiquidity = () => {
   const executeAction = !connected
     ? connect
     : async (instance?: PoolInfo) => {
-        const currentDepositToken = getDepositToken();
+      const currentDepositToken = getDepositToken();
+      if (
+        isLatestLayout &&
+        depositType === "one" &&
+        currentDepositToken?.account &&
+        currentDepositToken.mint
+      ) {
+        setPendingTx(true);
+        const components = [
+          {
+            account: currentDepositToken.account,
+            mintAddress: currentDepositToken.mintAddress,
+            amount: currentDepositToken.convertAmount(),
+          },
+        ];
+        addLiquidity(
+          connection,
+          wallet,
+          components,
+          slippage,
+          instance,
+          options,
+          depositType
+        )
+          .then(() => {
+            setPendingTx(false);
+          })
+          .catch((e) => {
+            console.log("Transaction failed", e);
+            notify({
+              description:
+                "Please try again and approve transactions from your wallet",
+              message: "Adding liquidity cancelled.",
+              type: "error",
+            });
+            setPendingTx(false);
+          });
+      } else if (A.account && B.account && A.mint && B.mint) {
+        setPendingTx(true);
+        const components = [
+          {
+            account: A.account,
+            mintAddress: A.mintAddress,
+            amount: A.convertAmount(),
+          },
+          {
+            account: B.account,
+            mintAddress: B.mintAddress,
+            amount: B.convertAmount(),
+          },
+        ];
+
+        // use input from B as offset during pool init for curve with offset
         if (
-          isLatestLayout &&
-          depositType === "one" &&
-          currentDepositToken?.account &&
-          currentDepositToken.mint
+          options.curveType === CurveType.ConstantProductWithOffset &&
+          !instance
         ) {
-          setPendingTx(true);
-          const components = [
-            {
-              account: currentDepositToken.account,
-              mintAddress: currentDepositToken.mintAddress,
-              amount: currentDepositToken.convertAmount(),
-            },
-          ];
-          addLiquidity(
-            connection,
-            wallet,
-            components,
-            slippage,
-            instance,
-            options,
-            depositType
-          )
-            .then(() => {
-              setPendingTx(false);
-            })
-            .catch((e) => {
-              console.log("Transaction failed", e);
-              notify({
-                description:
-                  "Please try again and approve transactions from your wallet",
-                message: "Adding liquidity cancelled.",
-                type: "error",
-              });
-              setPendingTx(false);
-            });
-        } else if (A.account && B.account && A.mint && B.mint) {
-          setPendingTx(true);
-          const components = [
-            {
-              account: A.account,
-              mintAddress: A.mintAddress,
-              amount: A.convertAmount(),
-            },
-            {
-              account: B.account,
-              mintAddress: B.mintAddress,
-              amount: B.convertAmount(),
-            },
-          ];
-
-          // use input from B as offset during pool init for curve with offset
-          if (
-            options.curveType === CurveType.ConstantProductWithOffset &&
-            !instance
-          ) {
-            options.token_b_offset = components[1].amount;
-            components[1].amount = 0;
-          }
-
-          addLiquidity(
-            connection,
-            wallet,
-            components,
-            slippage,
-            instance,
-            options
-          )
-            .then(() => {
-              setPendingTx(false);
-            })
-            .catch((e) => {
-              console.log("Transaction failed", e);
-              notify({
-                description:
-                  "Please try again and approve transactions from your wallet",
-                message: "Adding liquidity cancelled.",
-                type: "error",
-              });
-              setPendingTx(false);
-            });
+          options.token_b_offset = components[1].amount;
+          components[1].amount = 0;
         }
-      };
+
+        addLiquidity(
+          connection,
+          wallet,
+          components,
+          slippage,
+          instance,
+          options
+        )
+          .then(() => {
+            setPendingTx(false);
+          })
+          .catch((e) => {
+            console.log("Transaction failed", e);
+            notify({
+              description:
+                "Please try again and approve transactions from your wallet",
+              message: "Adding liquidity cancelled.",
+              type: "error",
+            });
+            setPendingTx(false);
+          });
+      }
+    };
 
   const hasSufficientBalance = A.sufficientBalance() && B.sufficientBalance();
   const getDepositToken = () => {
@@ -191,18 +191,17 @@ export const AddToLiquidity = () => {
       className="add-button"
       onClick={() => executeAction(pool)}
       trigger={["click"]}
-      // disabled={
-      //   connected &&
-      //   (depositType === "both"
-      //     ? pendingTx ||
-      //       !A.account ||
-      //       !B.account ||
-      //       A.account === B.account ||
-      //       !hasSufficientBalance
-      //     : !getDepositToken()?.account ||
-      //       !getDepositToken()?.sufficientBalance())
-      // }
-      disabled={true}
+      disabled={
+        connected &&
+        (depositType === "both"
+          ? pendingTx ||
+          !A.account ||
+          !B.account ||
+          A.account === B.account ||
+          !hasSufficientBalance
+          : !getDepositToken()?.account ||
+          !getDepositToken()?.sufficientBalance())
+      }
       type="primary"
       size="large"
       overlay={
@@ -213,17 +212,16 @@ export const AddToLiquidity = () => {
         />
       }
     >
-      {/*{depositType === "both"*/}
-      {/*  ? generateActionLabel(*/}
-      {/*      pool ? ADD_LIQUIDITY_LABEL : CREATE_POOL_LABEL,*/}
-      {/*      connected,*/}
-      {/*      tokenMap,*/}
-      {/*      A,*/}
-      {/*      B*/}
-      {/*    )*/}
-      {/*  : generateExactOneLabel(connected, tokenMap, getDepositToken())}*/}
-      {/*{pendingTx && <Spin indicator={antIcon} className="add-spinner" />}*/}
-      Swap is being deprecated
+      {depositType === "both"
+        ? generateActionLabel(
+          pool ? ADD_LIQUIDITY_LABEL : CREATE_POOL_LABEL,
+          connected,
+          tokenMap,
+          A,
+          B
+        )
+        : generateExactOneLabel(connected, tokenMap, getDepositToken())}
+      {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
     </Dropdown.Button>
   );
 
