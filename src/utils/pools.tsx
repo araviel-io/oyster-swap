@@ -41,8 +41,8 @@ import {
 
 const LIQUIDITY_TOKEN_PRECISION = 8;
 
-export const LIQUIDITY_PROVIDER_FEE = 0.003;
-export const SERUM_FEE = 0.0005;
+export const LIQUIDITY_PROVIDER_FEE = 0;
+export const SERUM_FEE = 0;
 
 export const isLatest = (swap: AccountInfo<Buffer>) => {
   return swap.data.length === TokenSwapLayout.span;
@@ -402,7 +402,7 @@ export const swap = async (
       programIds().token,
       amountIn,
       minAmountOut,
-      hostFeeAccount,
+      hostFeeAccount = undefined,
       isLatestSwap
     )
   );
