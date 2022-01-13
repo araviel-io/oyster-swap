@@ -1,17 +1,18 @@
 import { PublicKey } from "@safecoin/web3.js";
 import { TokenSwapLayout } from "../models";
 
-export const WRAPPED_SOL_MINT = new PublicKey(
-  "So11111111111111111111111111111111111111112"
+export const WRAPPED_SAFE_MINT = new PublicKey(
+  "Safe111111111111111111111111111111111111111"
 );
 let TOKEN_PROGRAM_ID = new PublicKey(
-  "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+  "ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN"
 );
 
 let SWAP_PROGRAM_ID: PublicKey;
 let SWAP_PROGRAM_LEGACY_IDS: PublicKey[];
 let SWAP_PROGRAM_LAYOUT: any;
 
+// to delete
 export const SWAP_PROGRAM_OWNER_FEE_ADDRESS = new PublicKey(
   "HfoTxFR1Tm6kGmWgYWD6J7YHVy1UwqSULUGVLXkJqaKN"
 );
@@ -31,7 +32,7 @@ export const PROGRAM_IDS = [
     name: "mainnet-beta",
     swap: () => ({
       current: {
-        pubkey: new PublicKey("SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8"),
+        pubkey: new PublicKey("SWPUnynS7FHA1koTbvmRktQgCDs7Tf4RkqwH19e2qSP"),
         layout: TokenSwapLayout,
       },
       legacy: [new PublicKey("9qvG1zUp8xF1Bi4m6UdRNby1BAAuaDrUxSpv4CmRRMjL")],
@@ -41,7 +42,7 @@ export const PROGRAM_IDS = [
     name: "testnet",
     swap: () => ({
       current: {
-        pubkey: new PublicKey("SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8"),
+        pubkey: new PublicKey("SWPUnynS7FHA1koTbvmRktQgCDs7Tf4RkqwH19e2qSP"),
         layout: TokenSwapLayout,
       },
       legacy: [],
@@ -51,7 +52,7 @@ export const PROGRAM_IDS = [
     name: "devnet",
     swap: () => ({
       current: {
-        pubkey: new PublicKey("SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8"),
+        pubkey: new PublicKey("SWPUnynS7FHA1koTbvmRktQgCDs7Tf4RkqwH19e2qSP"),
         layout: TokenSwapLayout,
       },
       legacy: [],

@@ -21,7 +21,7 @@ import {
   programIds,
   SWAP_HOST_FEE_ADDRESS,
   SWAP_PROGRAM_OWNER_FEE_ADDRESS,
-  WRAPPED_SOL_MINT,
+  WRAPPED_SAFE_MINT,
 } from "./ids";
 import {
   LiquidityComponent,
@@ -179,10 +179,10 @@ export const removeLiquidity = async (
   });
 
   return [
-    accountA.info.mint.equals(WRAPPED_SOL_MINT)
+    accountA.info.mint.equals(WRAPPED_SAFE_MINT)
       ? (wallet.publicKey as PublicKey)
       : toAccounts[0],
-    accountB.info.mint.equals(WRAPPED_SOL_MINT)
+    accountB.info.mint.equals(WRAPPED_SAFE_MINT)
       ? (wallet.publicKey as PublicKey)
       : toAccounts[1],
   ];
@@ -291,7 +291,7 @@ export const removeExactOneLiquidity = async (
     description: `Transaction - ${tx}`,
   });
 
-  return tokenMatchAccount.info.mint.equals(WRAPPED_SOL_MINT)
+  return tokenMatchAccount.info.mint.equals(WRAPPED_SAFE_MINT)
     ? (wallet.publicKey as PublicKey)
     : toAccount;
 };
@@ -983,7 +983,7 @@ function findOrCreateAccountByMint(
       acc.info.owner.toBase58() === owner.toBase58() &&
       (excluded === undefined || !excluded.has(acc.pubkey.toBase58()))
   );
-  const isWrappedSol = accountToFind === WRAPPED_SOL_MINT.toBase58();
+  const isWrappedSol = accountToFind === WRAPPED_SAFE_MINT.toBase58();
 
   let toAccount: PublicKey;
   if (account && !isWrappedSol) {
@@ -1407,7 +1407,7 @@ function getWrappedAccount(
   instructions.push(
     Token.createInitAccountInstruction(
       programIds().token,
-      WRAPPED_SOL_MINT,
+      WRAPPED_SAFE_MINT,
       account.publicKey,
       payer
     )
