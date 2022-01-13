@@ -8,7 +8,7 @@ import {
 } from "@solana/web3.js";
 import { sendTransaction, useConnection } from "./connection";
 import { useEffect, useMemo, useState } from "react";
-import { Token, MintLayout, AccountLayout } from "@solana/spl-token";
+import { Token, MintLayout, AccountLayout } from "@safecoin/safe-token";
 import { notify } from "./notifications";
 import {
   cache,

@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import Wallet from "@project-serum/sol-wallet-adapter";
+import Wallet from "@araviel/safe-wallet-adapter";
 import { Button, Modal } from "antd";
 import {
   WalletAdapter,

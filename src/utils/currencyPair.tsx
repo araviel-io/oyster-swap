@@ -11,7 +11,7 @@ import {
   PoolOperation,
 } from "./pools";
 import { cache, useAccountByMint } from "./accounts";
-import { MintInfo } from "@solana/spl-token";
+import { MintInfo } from "@safecoin/safe-token";
 import { useConnection, useConnectionConfig } from "./connection";
 import {
   CurveType,

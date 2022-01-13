@@ -1,6 +1,6 @@
 import BN from 'bn.js';
 import { useCallback, useState } from "react";
-import { MintInfo } from "@solana/spl-token";
+import { MintInfo } from "@safecoin/safe-token";
 
 import { PoolInfo, TokenAccount } from "./../models";
 import { TokenInfo } from "./clist";
