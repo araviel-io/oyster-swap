@@ -1,4 +1,4 @@
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@safecoin/web3.js";
 import { TokenSwapLayout } from "../models";
 
 export const WRAPPED_SOL_MINT = new PublicKey(

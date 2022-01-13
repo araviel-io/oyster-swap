@@ -1,5 +1,5 @@
 import { Numberu64 } from "./../utils/token-swap";
-import { PublicKey, Account, TransactionInstruction } from "@solana/web3.js";
+import { PublicKey, Account, TransactionInstruction } from "@safecoin/web3.js";
 import * as BufferLayout from "buffer-layout";
 import { CurveType, PoolConfig } from "./pool";
 

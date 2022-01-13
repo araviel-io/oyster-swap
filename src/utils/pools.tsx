@@ -5,7 +5,7 @@ import {
   PublicKey,
   SystemProgram,
   TransactionInstruction,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 import { sendTransaction, useConnection } from "./connection";
 import { useEffect, useMemo, useState } from "react";
 import { Token, MintLayout, AccountLayout } from "@safecoin/safe-token";
