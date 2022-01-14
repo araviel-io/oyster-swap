@@ -133,7 +133,7 @@ export const removeLiquidity = async (
       authority,
       transferAuthority.publicKey,
       pool.pubkeys.mint,
-      pool.pubkeys.feeAccount,
+      pool.pubkeys.feeAccount, // undefined ?
       account.pubkey,
       pool.pubkeys.holdingAccounts[0],
       pool.pubkeys.holdingAccounts[1],
@@ -441,7 +441,7 @@ export const addLiquidity = async (
     if (!options) {
       throw new Error("Options are required to create new pool.");
     }
-
+    console.log("pools.tsx L444 options", options)
     await _addLiquidityNewPool(wallet, connection, components, options);
   } else {
     await _addLiquidityExistingPool(pool, components, connection, wallet);
@@ -1174,6 +1174,7 @@ async function _addLiquidityNewPool(
 
   const liquidityTokenMint = new Account();
   // Create account for pool liquidity token
+
   instructions.push(
     SystemProgram.createAccount({
       fromPubkey: wallet.publicKey,
@@ -1231,7 +1232,7 @@ async function _addLiquidityNewPool(
       )
     );
   });
-
+  //TODO: Ara : remove lp
   // creating depositor pool account
   const depositorAccount = createSplAccount(
     instructions,
@@ -1241,7 +1242,7 @@ async function _addLiquidityNewPool(
     wallet.publicKey,
     AccountLayout.span
   );
-
+  //TODO: Ara : remove lp
   // creating fee pool account its set from env variable or to creater of the pool
   // creater of the pool is not allowed in some versions of token-swap program
   const feeAccount = createSplAccount(

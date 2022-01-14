@@ -101,7 +101,7 @@ export function CurrencyPairProvider({ children = null as any }) {
   const [poolOperation, setPoolOperation] = useState<PoolOperation>(
     PoolOperation.Add
   );
-
+  /* DEFAULT SETTINGS FOR LP FEES
   const [options, setOptions] = useState<PoolConfig>({
     curveType: CurveType.ConstantProduct,
     fees: {
@@ -113,6 +113,20 @@ export function CurrencyPairProvider({ children = null as any }) {
       ownerWithdrawFeeDenominator: 0,
       hostFeeNumerator: 20,
       hostFeeDenominator: 100,
+    },
+  });
+*/
+  const [options, setOptions] = useState<PoolConfig>({
+    curveType: CurveType.ConstantProduct,
+    fees: {
+      tradeFeeNumerator: 0,
+      tradeFeeDenominator: 0,
+      ownerTradeFeeNumerator: 0,
+      ownerTradeFeeDenominator: 0,
+      ownerWithdrawFeeNumerator: 0,
+      ownerWithdrawFeeDenominator: 0,
+      hostFeeNumerator: 0,
+      hostFeeDenominator: 0,
     },
   });
 

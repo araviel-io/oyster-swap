@@ -128,6 +128,50 @@
       "tags": [
         "stablecoin"
       ]
+    },
+    {
+      "chainId": 103,
+      "address": "DG2FVYVnFF2QxWrqThwruUTbY2aonGx7yLgrVaD1GXWr",
+      "symbol": "stARA",
+      "name": "dev ARA",
+      "decimals": 6,
+      "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png",
+      "tags": [
+        "stablecoin"
+      ]
+    },
+    {
+      "chainId": 103,
+      "address": "5qNeXYuQpKMtctx4wCxPXeQftTJHGqfy6XifM1jQSaQX",
+      "symbol": "stVIE",
+      "name": "dev VIE",
+      "decimals": 6,
+      "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png",
+      "tags": [
+        "stablecoin"
+      ]
+    },
+    {
+      "chainId": 103,
+      "address": "CxLHNd5SikJnpLRCPf7yY8gpcVx9PBFYKKii2ydSYu6J",
+      "symbol": "stTHIRD",
+      "name": "dev VIE",
+      "decimals": 6,
+      "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png",
+      "tags": [
+        "stablecoin"
+      ]
+    },
+    {
+      "chainId": 103,
+      "address": "8aiTkfqukvBQa3Tp1fKgPiSuRHRYXgNhWD4eBKQgvskG",
+      "symbol": "stFOURTH",
+      "name": "dev FOURTH",
+      "decimals": 6,
+      "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png",
+      "tags": [
+        "stablecoin"
+      ]
     }
   ],
   "version": {

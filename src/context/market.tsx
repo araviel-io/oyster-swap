@@ -16,7 +16,7 @@ import {
   ParsedAccountBase,
   useCachedPool,
 } from "./../utils/accounts";
-import { Market, MARKETS, Orderbook, TOKEN_MINTS } from "@project-serum/serum";
+import { Market, MARKETS, Orderbook, TOKEN_MINTS } from "./../utils/serum/lib";
 import { AccountInfo, Connection, PublicKey } from "@safecoin/web3.js";
 import { useMemo } from "react";
 import { PoolInfo } from "../models";
@@ -470,7 +470,7 @@ function createEnrichedPools(
         "/",
         "-"
       )}`;
-        console.log("fees ", fees, "fees24h", fees24h)
+        console.log("fees ", fees, "fees24h", fees24h, "apy", apy, "apy24h", apy24h, "poolData", poolData)
       return {
         key: p.pubkeys.account.toBase58(),
         id: index,
@@ -596,7 +596,7 @@ const getMidPrice = (marketAddress?: string, mintAddress?: string) => {
     }
   }
 
-  return 0;
+  return 1.0;
 };
 
 const refreshAccounts = async (connection: Connection, keys: string[]) => {

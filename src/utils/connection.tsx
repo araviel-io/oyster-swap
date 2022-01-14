@@ -34,7 +34,7 @@ export const ENDPOINTS = [
   },
   {
     name: "devnet" as ENV,
-    endpoint: 'https://api.devnet.solana.com/',
+    endpoint: 'https://api.devnet.safecoin.org',
     chainID: ChainID.Devnet,
   },
   {
