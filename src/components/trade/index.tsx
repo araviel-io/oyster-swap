@@ -1,4 +1,5 @@
-import { Button, Card, Popover, Spin, Typography } from "antd";
+import {   Popover, Spin,  } from "antd";
+import { Button, Card, Typography } from "@material-ui/core";
 import React, { useEffect, useMemo, useState } from "react";
 import {
   useConnection,
@@ -31,7 +32,7 @@ import { AppBar } from "../appBar";
 import { Settings } from "../settings";
 import { MigrationModal } from "../migration";
 
-const { Text } = Typography;
+//const { Text } = Typography;
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -120,7 +121,7 @@ export const TradeEntry = () => {
             A.setMint(item);
           }}
         />
-        <Button type="primary" className="swap-button" onClick={swapAccounts}>
+        <Button className="swap-button" onClick={swapAccounts}>
           ⇅
         </Button>
         <CurrencyInput
@@ -142,7 +143,7 @@ export const TradeEntry = () => {
       </div>
       <Button
         className="trade-button"
-        type="primary"
+        
         size="large"
         onClick={connected ? handleSwap : connect}
         style={{ width: "100%" }}
@@ -230,13 +231,13 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
   return !!parseFloat(B.amount) ? (
     <div className="pool-card" style={{ width: "initial" }}>
       <div className="pool-card-row">
-        <Text className="pool-card-cell">Price</Text>
+        <Typography className="pool-card-cell">Price</Typography>
         <div className="pool-card-cell " title={exchangeRate.toString()}>
           <Button
-            shape="circle"
-            size="middle"
-            type="text"
-            icon={<SwapOutlined />}
+           // shape="circle"
+            size="medium"
+           // type="text"
+            //starticon={<SwapOutlined />}
             onClick={handleSwapPriceInfo}
           >
             {exchangeRate.toFixed(6)}&nbsp;
@@ -246,7 +247,7 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
         </div>
       </div>
       <div className="pool-card-row">
-        <Text className="pool-card-cell">
+        <Typography className="pool-card-cell">
           <Popover
             trigger="hover"
             content={
@@ -258,13 +259,13 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
           >
             Minimum Received <QuestionCircleOutlined />
           </Popover>
-        </Text>
+        </Typography>
         <div className="pool-card-cell " title={amountOut.toString()}>
           {amountOut.toFixed(6)} {B.name}
         </div>
       </div>
       <div className="pool-card-row">
-        <Text className="pool-card-cell">
+        <Typography className="pool-card-cell">
           <Popover
             trigger="hover"
             content={
@@ -276,7 +277,7 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
           >
             Price Impact <QuestionCircleOutlined />
           </Popover>
-        </Text>
+        </Typography>
         <div
           className="pool-card-cell "
           title={priceImpact.toString()}
@@ -286,7 +287,7 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
         </div>
       </div>
       <div className="pool-card-row">
-        <Text className="pool-card-cell">
+        <Typography className="pool-card-cell">
           <Popover
             trigger="hover"
             content={
@@ -298,7 +299,7 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
           >
             Liquidity Provider Fee <QuestionCircleOutlined />
           </Popover>
-        </Text>
+        </Typography>
         <div className="pool-card-cell " title={lpFee.toString()}>
           {lpFee} {A.name}
         </div>
@@ -319,19 +320,21 @@ export const TradeView = () => {
             trigger="click"
           >
             <Button
-              shape="circle"
+             // shape="circle"
               size="large"
-              type="text"
-              icon={<SettingOutlined />}
+              
+             // icon={<SettingOutlined />}
             />
           </Popover>
         }
       />
       <Card
-        className="exchange-card"
-        headStyle={{ padding: 0 }}
-        bodyStyle={{ position: "relative" }}
+      style={{background:"red"}}
+        //className="exchange-card"
+        //headStyle={{ padding: 0 }}
+       // bodyStyle={{ position: "relative" }}
       >
+        
         <TradeEntry />
       </Card>
       <MigrationModal />
