@@ -221,90 +221,11 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
     }
   }, [A, B, slippage, pool, enriched, priceAccount]);
 
-  const handleSwapPriceInfo = () => {
-    if (priceAccount !== B.mintAddress) {
-      setPriceAccount(B.mintAddress);
-    } else {
-      setPriceAccount(A.mintAddress);
-    }
-  };
+
   return !!parseFloat(B.amount) ? (
-    <div className="pool-card" style={{ width: "initial" }}>
-      <div className="pool-card-row">
-        <Typography className="pool-card-cell">Price</Typography>
-        <div className="pool-card-cell " title={exchangeRate.toString()}>
-          <Button
-           // shape="circle"
-            size="medium"
-           // type="text"
-            //starticon={<SwapOutlined />}
-            onClick={handleSwapPriceInfo}
-          >
-            {exchangeRate.toFixed(6)}&nbsp;
-            {priceAccount === B.mintAddress ? B.name : A.name} per&nbsp;
-            {priceAccount === B.mintAddress ? A.name : B.name}&nbsp;
-          </Button>
-        </div>
-      </div>
-      <div className="pool-card-row">
-        <Typography className="pool-card-cell">
-          <Popover
-            trigger="hover"
-            content={
-              <div style={{ width: 300 }}>
-                You transaction will revert if there is a large, unfavorable
-                price movement before it is confirmed.
-              </div>
-            }
-          >
-            Minimum Received <QuestionCircleOutlined />
-          </Popover>
-        </Typography>
-        <div className="pool-card-cell " title={amountOut.toString()}>
-          {amountOut.toFixed(6)} {B.name}
-        </div>
-      </div>
-      <div className="pool-card-row">
-        <Typography className="pool-card-cell">
-          <Popover
-            trigger="hover"
-            content={
-              <div style={{ width: 300 }}>
-                The difference between the market price and estimated price due
-                to trade size.
-              </div>
-            }
-          >
-            Price Impact <QuestionCircleOutlined />
-          </Popover>
-        </Typography>
-        <div
-          className="pool-card-cell "
-          title={priceImpact.toString()}
-          style={{ color: colorWarning(priceImpact) }}
-        >
-          {priceImpact < 0.01 ? "< 0.01%" : priceImpact.toFixed(3) + "%"}
-        </div>
-      </div>
-      <div className="pool-card-row">
-        <Typography className="pool-card-cell">
-          <Popover
-            trigger="hover"
-            content={
-              <div style={{ width: 300 }}>
-                A portion of each trade ({LIQUIDITY_PROVIDER_FEE * 100}%) goes
-                to liquidity providers as a protocol incentive.
-              </div>
-            }
-          >
-            Liquidity Provider Fee <QuestionCircleOutlined />
-          </Popover>
-        </Typography>
-        <div className="pool-card-cell " title={lpFee.toString()}>
-          {lpFee} {A.name}
-        </div>
-      </div>
-    </div>
+    <>
+   
+    </>
   ) : null;
 };
 

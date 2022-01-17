@@ -10,10 +10,6 @@ export const Settings = () => {
     <>
       <div>
         Transactions: Settings:
-        <div>
-          Slippage:
-          <Slippage />
-        </div>
       </div>
       <div style={{ display: "grid" }}>
         Network:{" "}
