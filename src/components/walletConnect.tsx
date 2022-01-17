@@ -16,9 +16,9 @@ export const WalletConnect: FunctionComponent = ({ children }) => {
           style={{ padding: 12 }}
         />
       )}
-      <Menu.Item key="3" onClick={select}>
+      {/*<Menu.Item key="3" onClick={select}>
         Change Wallet
-      </Menu.Item>
+      </Menu.Item>*/}
       {connected && (
         <Menu.Item
           key="2"
@@ -34,7 +34,7 @@ export const WalletConnect: FunctionComponent = ({ children }) => {
   if (connected) {
     return (
       <Dropdown overlay={menu} trigger={["hover"]}>
-        <div style={{ cursor: "pointer" }}>{children}</div>
+       <div style={{ cursor: "pointer" }}>{children}</div>
       </Dropdown>
     );
   }

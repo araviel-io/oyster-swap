@@ -13,7 +13,7 @@ import { SupplyOverview } from "./supplyOverview";
 import { LineChartOutlined, AlignLeftOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
-
+/*
 export const PoolCard = (props: { pool: PoolInfo; account?: TokenAccount }) => {
   const pools = useMemo(() => [props.pool].filter((p) => p) as PoolInfo[], [
     props.pool,
@@ -253,7 +253,7 @@ export const PoolCard = (props: { pool: PoolInfo; account?: TokenAccount }) => {
 
           <SupplyOverview pool={pool} />
           <div className="pool-card-row">
-            {/* {item && <Button type="default" onClick={setPair}>Add</Button>} */}
+             {item && <Button type="default" onClick={setPair}>Add</Button>} 
             {props.account && (
               <Button onClick={handleSwitchViewMode}>Remove</Button>
             )}
@@ -274,3 +274,4 @@ export const PoolCard = (props: { pool: PoolInfo; account?: TokenAccount }) => {
     </Card>
   );
 };
+*/

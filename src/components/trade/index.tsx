@@ -28,7 +28,7 @@ import { colorWarning, getTokenName } from "../../utils/utils";
 import { AdressesPopover } from "../pool/address";
 import { PoolInfo } from "../../models";
 import { useEnrichedPools } from "../../context/market";
-import { AppBar } from "../appBar";
+
 import { Settings } from "../settings";
 import { MigrationModal } from "../migration";
 
@@ -103,7 +103,7 @@ export const TradeEntry = () => {
 
   return (
     <>
-      <div className="input-card">
+      <div className="input-card" style={{background:"red"}}>
         <AdressesPopover pool={pool} />
         <CurrencyInput
           title="Input"
@@ -232,23 +232,6 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
 export const TradeView = () => {
   return (
     <>
-      <AppBar
-        right={
-          <Popover
-            placement="topRight"
-            title="Settings"
-            content={<Settings />}
-            trigger="click"
-          >
-            <Button
-             // shape="circle"
-              size="large"
-              
-             // icon={<SettingOutlined />}
-            />
-          </Popover>
-        }
-      />
       <Card
       style={{background:"red"}}
         //className="exchange-card"

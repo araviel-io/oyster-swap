@@ -31,7 +31,7 @@ import { formatPriceNumber, getPoolName } from "../../utils/utils";
 import { useMint, useUserAccounts } from "../../utils/accounts";
 import { useEnrichedPools } from "../../context/market";
 import { PoolIcon } from "../tokenIcon";
-import { AppBar } from "../appBar";
+//import { AppBar } from "../appBar";
 import { Settings } from "../settings";
 import { programIds } from "../../utils/ids";
 
@@ -476,23 +476,7 @@ export const YourPosition = (props: { pool?: PoolInfo }) => {
 export const AddToLiquidityView = () => {
   return (
     <>
-      <AppBar
-        right={
-          <Popover
-            placement="topRight"
-            title="Settings"
-            content={<Settings />}
-            trigger="click"
-          >
-            <Button
-              shape="circle"
-              size="large"
-              type="text"
-              icon={<SettingOutlined />}
-            />
-          </Popover>
-        }
-      />
+
       <Card
         className="exchange-card"
         headStyle={{ padding: 0 }}

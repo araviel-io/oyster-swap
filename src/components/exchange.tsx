@@ -5,8 +5,10 @@ import { TradeEntry } from "./trade";
 import { AddToLiquidity } from "./pool/add";
 import { Settings } from "./settings";
 import { SettingOutlined } from "@ant-design/icons";
-import { AppBar } from "./appBar";
+//import { AppBar } from "./appBar";
 import { useHistory, useLocation } from "react-router-dom";
+import { WalletConnect } from "./walletConnect";
+import { AccountInfo } from "./accountInfo";
 
 export const ExchangeView = (props: {}) => {
   const tabStyle: React.CSSProperties = { width: 120 };
@@ -33,8 +35,9 @@ export const ExchangeView = (props: {}) => {
 
   return (
     <>
-      <AppBar
-        right={
+
+      <div>
+        <div>
           <Popover
             placement="topRight"
             title="Settings"
@@ -48,13 +51,15 @@ export const ExchangeView = (props: {}) => {
               icon={<SettingOutlined />}
             />
           </Popover>
-        }
-      />
+        </div>
+        <WalletConnect>
+          <AccountInfo />
+        </WalletConnect>
+      </div>
       <Card
         className="exchange-card"
         headStyle={{ padding: 0 }}
         bodyStyle={{ position: "relative" }}
-     
       >
         {tabList.find((t) => t.key === activeTab)?.render()}
       </Card>
