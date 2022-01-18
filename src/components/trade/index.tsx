@@ -1,5 +1,5 @@
-import { Popover, Spin, } from "antd";
-import { Button, Card, Typography } from "@material-ui/core";
+
+import { Button, Card, CircularProgress, Typography } from "@material-ui/core";
 import React, { useEffect, useMemo, useState } from "react";
 import {
   useConnection,
@@ -8,12 +8,7 @@ import {
 } from "../../utils/connection";
 import { useWallet } from "../../context/wallet";
 import { CurrencyInput } from "../currencyInput";
-import {
-  LoadingOutlined,
-  SwapOutlined,
-  QuestionCircleOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+
 import {
   swap,
   usePoolForBasket,
@@ -30,11 +25,7 @@ import { PoolInfo } from "../../models";
 import { useEnrichedPools } from "../../context/market";
 
 import { Settings } from "../settings";
-//import { MigrationModal } from "../migration";
 
-//const { Text } = Typography;
-
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 export const TradeEntry = () => {
   const { wallet, connect, connected } = useWallet();
@@ -121,7 +112,7 @@ export const TradeEntry = () => {
             A.setMint(item);
           }}
         />
-        <Button className="swap-button" onClick={swapAccounts}>
+        <Button disabled={true} className="swap-button">
           ⇅
         </Button>
         <CurrencyInput
@@ -170,7 +161,7 @@ export const TradeEntry = () => {
           B,
           true
         )}
-        {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
+        {pendingTx && <CircularProgress size={15} className="add-spinner" />}
 
       </Button>
       <TradeInfo pool={pool} />

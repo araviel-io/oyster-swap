@@ -1,5 +1,4 @@
 import React from "react";
-//import { Button, Col, Popover, Row } from "antd";
 import { PoolInfo } from "../../models";
 import { CopyOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { ExplorerLink } from "./../explorerLink";
@@ -12,25 +11,27 @@ const Address = (props: {
   label?: string;
 }) => {
   return (
-    {/* require antd
-     <Row style={{ width: "100%", ...props.style }}>
-      {props.label && <Col span={4}>{props.label}:</Col>}
-      <Col span={17}>
-        <ExplorerLink address={props.address} code={true} type="address" />
-      </Col>
-      <Col span={3} style={{ display: "flex" }}>
-        <Button
-          shape="round"
-          icon={<CopyOutlined />}
-          size={"small"}
-          style={{ marginLeft: "auto", marginRight: 0 }}
-          onClick={() => navigator.clipboard.writeText(props.address)}
-        />
-      </Col>
-    </Row>
-    
-    */}
+    <div>
+      {/* 
+         <Row style={{ width: "100%", ...props.style }}>
+        {props.label && <Col span={4}>{props.label}:</Col>}
+        <Col span={17}>
+          <ExplorerLink address={props.address} code={true} type="address" />
+        </Col>
+        <Col span={3} style={{ display: "flex" }}>
+          <Button
+            shape="round"
+            icon={<CopyOutlined />}
+            size={"small"}
+            style={{ marginLeft: "auto", marginRight: 0 }}
+            onClick={() => navigator.clipboard.writeText(props.address)}
+          />
+        </Col>
+      </Row>
+      */}
    
+      <div>test  {props.label}</div>
+    </div>
   );
 };
 

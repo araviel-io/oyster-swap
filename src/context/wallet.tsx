@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import Wallet from "@araviel/safe-wallet-adapter";
 import { Button, Modal } from "antd";
+import {Modal as Modaled} from "@material-ui/core"
 import {
   WalletAdapter,
   LedgerWalletAdapter,
@@ -131,6 +132,9 @@ export function WalletProvider({ children = null as any }) {
       }}
     >
       {children}
+
+{/*
+
       <Modal
         title="Select Wallet"
         okText="Connect"
@@ -139,6 +143,9 @@ export function WalletProvider({ children = null as any }) {
         onCancel={close}
         width={400}
       >
+
+*/}
+
         {WALLET_PROVIDERS.map((provider) => {
           const onClick = function () {
             setProviderUrl(provider.url);
@@ -171,7 +178,7 @@ export function WalletProvider({ children = null as any }) {
             </Button>
           );
         })}
-      </Modal>
+      {/* </Modal> */ }
     </WalletContext.Provider>
   );
 }

@@ -7,7 +7,7 @@ import { Settings } from "./settings";
 import { SettingOutlined } from "@ant-design/icons";
 //import { AppBar } from "./appBar";
 import { useHistory, useLocation } from "react-router-dom";
-import { WalletConnect } from "./walletConnect";
+import { WalletConnect2 } from "./walletConnect";
 import { AccountInfo } from "./accountInfo";
 
 export const ExchangeView = (props: {}) => {
@@ -41,9 +41,9 @@ export const ExchangeView = (props: {}) => {
         <Settings />
      
         </div>
-        <WalletConnect>
+        <WalletConnect2>
           <AccountInfo />
-        </WalletConnect>
+        </WalletConnect2>
       </div>
       <Card
         className="exchange-card"
