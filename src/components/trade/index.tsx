@@ -1,4 +1,4 @@
-import {   Popover, Spin,  } from "antd";
+import { Popover, Spin, } from "antd";
 import { Button, Card, Typography } from "@material-ui/core";
 import React, { useEffect, useMemo, useState } from "react";
 import {
@@ -30,7 +30,7 @@ import { PoolInfo } from "../../models";
 import { useEnrichedPools } from "../../context/market";
 
 import { Settings } from "../settings";
-import { MigrationModal } from "../migration";
+//import { MigrationModal } from "../migration";
 
 //const { Text } = Typography;
 
@@ -103,7 +103,7 @@ export const TradeEntry = () => {
 
   return (
     <>
-      <div className="input-card" style={{background:"red"}}>
+      <div className="input-card" style={{ background: "red" }}>
         <AdressesPopover pool={pool} />
         <CurrencyInput
           title="Input"
@@ -143,7 +143,7 @@ export const TradeEntry = () => {
       </div>
       <Button
         className="trade-button"
-        
+
         size="large"
         onClick={connected ? handleSwap : connect}
         style={{ width: "100%" }}
@@ -171,7 +171,7 @@ export const TradeEntry = () => {
           true
         )}
         {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
-        
+
       </Button>
       <TradeInfo pool={pool} />
     </>
@@ -224,7 +224,7 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
 
   return !!parseFloat(B.amount) ? (
     <>
-   
+
     </>
   ) : null;
 };
@@ -233,15 +233,15 @@ export const TradeView = () => {
   return (
     <>
       <Card
-      style={{background:"red"}}
-        //className="exchange-card"
-        //headStyle={{ padding: 0 }}
-       // bodyStyle={{ position: "relative" }}
+        style={{ background: "red" }}
+      //className="exchange-card"
+      //headStyle={{ padding: 0 }}
+      // bodyStyle={{ position: "relative" }}
       >
-        
+
         <TradeEntry />
       </Card>
-      <MigrationModal />
+      {/*<MigrationModal />*/}
     </>
   );
 };

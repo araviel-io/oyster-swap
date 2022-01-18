@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card, Popover } from "antd";
 import { TradeEntry } from "./trade";
 // TODO: remove AddToLiquidity for w integration
-import { AddToLiquidity } from "./pool/add";
+//import { AddToLiquidity } from "./pool/add";
 import { Settings } from "./settings";
 import { SettingOutlined } from "@ant-design/icons";
 //import { AppBar } from "./appBar";
