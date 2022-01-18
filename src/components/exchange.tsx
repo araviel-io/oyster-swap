@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Popover } from "antd";
+import { Card } from "@material-ui/core"
 import { TradeEntry } from "./trade";
 // TODO: remove AddToLiquidity for w integration
 //import { AddToLiquidity } from "./pool/add";
@@ -38,19 +38,8 @@ export const ExchangeView = (props: {}) => {
 
       <div>
         <div>
-          <Popover
-            placement="topRight"
-            title="Settings"
-            content={<Settings />}
-            trigger="click"
-          >
-            <Button
-              shape="circle"
-              size="large"
-              type="text"
-              icon={<SettingOutlined />}
-            />
-          </Popover>
+        <Settings />
+     
         </div>
         <WalletConnect>
           <AccountInfo />
@@ -58,8 +47,9 @@ export const ExchangeView = (props: {}) => {
       </div>
       <Card
         className="exchange-card"
-        headStyle={{ padding: 0 }}
-        bodyStyle={{ position: "relative" }}
+        style={{position:"relative",padding: 0 }}
+        //headStyle={{ padding: 0 }}
+        //bodyStyle={{ position: "relative" }}
       >
         {tabList.find((t) => t.key === activeTab)?.render()}
       </Card>

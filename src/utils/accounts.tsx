@@ -302,7 +302,7 @@ function wrapNativeAccount(
     pubkey: pubkey,
     account,
     info: {
-      address: pubkey,
+      address: pubkey, // temporary
       mint: WRAPPED_SAFE_MINT,
       owner: pubkey,
       amount: new u64(account.lamports),

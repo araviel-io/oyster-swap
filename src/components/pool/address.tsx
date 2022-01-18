@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Popover, Row } from "antd";
+//import { Button, Col, Popover, Row } from "antd";
 import { PoolInfo } from "../../models";
 import { CopyOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { ExplorerLink } from "./../explorerLink";
@@ -12,7 +12,8 @@ const Address = (props: {
   label?: string;
 }) => {
   return (
-    <Row style={{ width: "100%", ...props.style }}>
+    {/* require antd
+     <Row style={{ width: "100%", ...props.style }}>
       {props.label && <Col span={4}>{props.label}:</Col>}
       <Col span={17}>
         <ExplorerLink address={props.address} code={true} type="address" />
@@ -27,6 +28,9 @@ const Address = (props: {
         />
       </Col>
     </Row>
+    
+    */}
+   
   );
 };
 
@@ -102,7 +106,7 @@ export const AdressesPopover = (props: { pool?: PoolInfo }) => {
     return null;
   }
 
-  return (
+  /*return (
     <Popover
       placement="topRight"
       title={"Addresses"}
@@ -122,5 +126,11 @@ export const AdressesPopover = (props: { pool?: PoolInfo }) => {
         icon={<InfoCircleOutlined />}
       />
     </Popover>
+  );*/
+  return (
+    <>
+      <PoolAddress pool={pool} showLabel={true} label={"Pool"} />
+      <AccountsAddress pool={pool} />
+    </>
   );
 };

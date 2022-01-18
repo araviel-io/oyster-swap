@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-//import { Button } from "antd";
 import { Button } from "@material-ui/core";
 import { useSlippageConfig } from "./../../utils/connection";
 import { NumericInput } from "./../numericInput";

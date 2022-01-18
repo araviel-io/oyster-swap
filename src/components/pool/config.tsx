@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-//import { Card, Select } from "antd";
 import { NumericInput } from "../numericInput";
-import "./add.less";
 import { CurveType, DEFAULT_DENOMINATOR, PoolConfig } from "../../models";
 import { ENABLE_FEES_INPUT } from "./../../utils/ids";
 
