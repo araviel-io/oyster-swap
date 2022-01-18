@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
+//import { Button } from "antd";
+import { Button } from "@material-ui/core";
 import { useSlippageConfig } from "./../../utils/connection";
 import { NumericInput } from "./../numericInput";
 
@@ -32,7 +33,7 @@ export const Slippage = () => {
           <Button
             key={item.toString()}
             style={itemStyle}
-            type={isSelected(item)}
+            //type={isSelected(item)}
             onClick={() => setSlippage(item / 100.0)}
           >
             {item}%

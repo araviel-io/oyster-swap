@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "antd";
+import { Input } from "@material-ui/core"
 
 export class NumericInput extends React.Component<any, any> {
   onChange = (e: any) => {
@@ -32,7 +32,10 @@ export class NumericInput extends React.Component<any, any> {
         {...this.props}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        maxLength={25}
+        //maxLength={25}
+        //variant="outlined"
+        
+        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
       />
     );
   }

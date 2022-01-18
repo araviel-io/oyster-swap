@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Card, Select } from "antd";
+//import { Card, Select } from "antd";
 import { NumericInput } from "../numericInput";
 import "./add.less";
 import { CurveType, DEFAULT_DENOMINATOR, PoolConfig } from "../../models";
 import { ENABLE_FEES_INPUT } from "./../../utils/ids";
 
-const Option = Select.Option;
+//const Option = Select.Option;
 
 const FeeInput = (props: {
   numerator: number;
@@ -153,37 +153,6 @@ export const PoolConfigCard = (props: {
   );
 
   return (
-    <Card title="Pool configuration">
-      <div className="pool-settings-grid">
-        {ENABLE_FEES_INPUT && feesInput}
-        <>
-          <span>Curve Type:</span>
-          <Select
-            defaultValue="0"
-            style={{ width: 200 }}
-            onChange={(val) =>
-              props.setOptions({
-                ...props.options,
-                curveType: parseInt(val),
-              })
-            }
-          >
-            {/*<Option value={CurveType.ConstantProduct.toString()}>
-              Constant Product
-          </Option>*/}
-            <Option value={CurveType.ConstantPrice.toString()}>
-              Constant Price
-            </Option>
-            {/*<Option value={CurveType.ConstantProductWithOffset.toString()}>
-              Offset Constant Product
-            </Option>*/}
-          </Select>
-        </>
-        {props.options.curveType === CurveType.ConstantPrice && (
-          <PriceParameters {...props} />
-        )}
-      </div>
-      {props.action}
-    </Card>
+    <></>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "antd";
+import { Typography } from "@material-ui/core"
 import { shortenAddress } from "./../utils/utils";
 import { PublicKey } from "@safecoin/web3.js";
 
@@ -32,9 +32,9 @@ export const ExplorerLink = (props: {
       style={props.style}
     >
       {code ? (
-        <Typography.Text style={props.style} code>
-          {shortenAddress(address, length)}
-        </Typography.Text>
+        <Typography style={props.style}>
+          <pre>{shortenAddress(address, length)}</pre>
+        </Typography>
       ) : (
         shortenAddress(address, length)
       )}

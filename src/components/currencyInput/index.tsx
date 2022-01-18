@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, Select } from "antd";
+//import { Card, Select } from "antd";
+import { Card, Select } from "@material-ui/core"
 import { NumericInput } from "../numericInput";
 import { convert, getPoolName, getTokenName, isKnownMint } from "../../utils/utils";
 import {
@@ -14,7 +15,7 @@ import { PoolIcon, TokenIcon } from "../tokenIcon";
 import { PublicKey } from "@safecoin/web3.js";
 import { PoolInfo, TokenAccount } from "../../models";
 
-const { Option } = Select;
+//const { Option } = Select;
 
 export const TokenDisplay = (props: {
   name: string;
@@ -85,7 +86,7 @@ export const CurrencyInput = (props: {
 
   const renderPopularTokens = tokens.map((item) => {
     return (
-      <Option
+      <Select
         key={item.address}
         value={item.address}
         name={item.symbol}
@@ -97,7 +98,7 @@ export const CurrencyInput = (props: {
           mintAddress={item.address}
           showBalance={true}
         />
-      </Option>
+      </Select>
     );
   });
 
@@ -153,7 +154,7 @@ export const CurrencyInput = (props: {
     }
 
     return (
-      <Option key={mint} value={mint} name={name}>
+      <Select key={mint} value={mint} name={name}>
         <TokenDisplay
           key={mint}
           mintAddress={mint}
@@ -161,7 +162,7 @@ export const CurrencyInput = (props: {
           icon={icon}
           showBalance={!pool}
         />
-      </Option>
+      </Select>
     );
   });
 
@@ -180,7 +181,7 @@ export const CurrencyInput = (props: {
     <Card
       className="ccy-input"
       style={{ borderRadius: 20 }}
-      bodyStyle={{ padding: 0 }}
+      //bodyStyle={{ padding: 0 }}
     >
       <div className="ccy-input-header">
         <div className="ccy-input-header-left">{props.title}</div>
@@ -213,19 +214,20 @@ export const CurrencyInput = (props: {
         <div className="ccy-input-header-right" style={{ display: "felx" }}>
           {!props.hideSelect ? (
             <Select
-              size="large"
-              showSearch
+              //size="large"
+             // showSearch
+              disabled={true}
               style={{ minWidth: 150 }}
               placeholder="CCY"
               value={props.mint}
-              onChange={(item) => {
+              onChange={(item:any) => {
                 if (props.onMintChange) {
                   props.onMintChange(item);
                 }
               }}
-              filterOption={(input, option) =>
+              /*filterOption={(input:any, option:any) =>
                 option?.name?.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
+              }*/
             >
               {[...renderPopularTokens, ...renderAdditionalTokens]}
             </Select>
@@ -273,7 +275,7 @@ export const PoolCurrencyInput = (props: {
     <Card
       className="ccy-input"
       style={{ borderRadius: 20 }}
-      bodyStyle={{ padding: 0 }}
+      //bodyStyle={{ padding: 0 }}
     >
       <div className="ccy-input-header">
         <div className="ccy-input-header-left">{props.title}</div>
