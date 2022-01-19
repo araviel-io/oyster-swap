@@ -4,7 +4,6 @@ import { TradeEntry } from "./trade";
 // TODO: remove AddToLiquidity for w integration
 //import { AddToLiquidity } from "./pool/add";
 import { Settings } from "./settings";
-import { SettingOutlined } from "@ant-design/icons";
 //import { AppBar } from "./appBar";
 import { useHistory, useLocation } from "react-router-dom";
 import { WalletConnect2 } from "./walletConnect";

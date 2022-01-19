@@ -1,6 +1,5 @@
 import React from "react";
 import { PoolInfo } from "../../models";
-import { CopyOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { ExplorerLink } from "./../explorerLink";
 import { useConnectionConfig } from "../../utils/connection";
 import { getTokenName } from "../../utils/utils";
@@ -12,7 +11,7 @@ const Address = (props: {
 }) => {
   return (
     <div>
-      {/* 
+      {/* TODO: ARA: frontend pool binding
          <Row style={{ width: "100%", ...props.style }}>
         {props.label && <Col span={4}>{props.label}:</Col>}
         <Col span={17}>
