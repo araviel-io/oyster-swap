@@ -1,5 +1,4 @@
-import {   Popover, Spin,  } from "antd";
-import { Button, Card, Typography } from "@material-ui/core";
+import { Button, Card, Typography, Popover, Spin, } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import {
   useConnection,
@@ -31,8 +30,6 @@ import { useEnrichedPools } from "../../context/market";
 import { AppBar } from "../appBar";
 import { Settings } from "../settings";
 import { MigrationModal } from "../migration";
-
-//const { Text } = Typography;
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -143,7 +140,6 @@ export const TradeEntry = () => {
       </div>
       <Button
         className="trade-button"
-        
         size="large"
         onClick={connected ? handleSwap : connect}
         style={{ width: "100%" }}
@@ -171,7 +167,7 @@ export const TradeEntry = () => {
           true
         )}
         {pendingTx && <Spin indicator={antIcon} className="add-spinner" />}
-        
+
       </Button>
       <TradeInfo pool={pool} />
     </>
@@ -224,7 +220,7 @@ export const TradeInfo = (props: { pool?: PoolInfo }) => {
 
   return !!parseFloat(B.amount) ? (
     <>
-   
+
     </>
   ) : null;
 };
@@ -241,21 +237,20 @@ export const TradeView = () => {
             trigger="click"
           >
             <Button
-             // shape="circle"
+              shape="circle"
               size="large"
-              
-             // icon={<SettingOutlined />}
+
+              icon={<SettingOutlined />}
             />
           </Popover>
         }
       />
       <Card
-      style={{background:"red"}}
-        //className="exchange-card"
-        //headStyle={{ padding: 0 }}
-       // bodyStyle={{ position: "relative" }}
+        style={{ background: "red" }}
+        className="exchange-card"
+        headStyle={{ padding: 0 }}
+        bodyStyle={{ position: "relative" }}
       >
-        
         <TradeEntry />
       </Card>
       <MigrationModal />

@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.less";
 import { Routes } from "./routes";
 
 function App() {
   return (
     <div className="App">
-      <div>ressurect</div>
-      <Routes />
-
+      <div className="AppContainer">
+        <Routes />
+      </div>
     </div>
   );
 }
