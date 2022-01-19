@@ -15,7 +15,7 @@ import {
   PoolOperation,
   LIQUIDITY_PROVIDER_FEE,
 } from "../../utils/pools";
-import { notify } from "../../utils/notifications";
+//import { notify } from "../../utils/notifications";
 import { useCurrencyPairState } from "../../utils/currencyPair";
 import { generateActionLabel, POOL_NOT_AVAILABLE, SWAP_LABEL } from "../labels";
 import "./trade.less";
@@ -25,9 +25,11 @@ import { PoolInfo } from "../../models";
 import { useEnrichedPools } from "../../context/market";
 
 import { Settings } from "../settings";
+import { useSnackbar } from "notistack";
 
 
 export const TradeEntry = () => {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { wallet, connect, connected } = useWallet();
   const connection = useConnection();
   const [pendingTx, setPendingTx] = useState(false);
@@ -80,12 +82,13 @@ export const TradeEntry = () => {
 
         await swap(connection, wallet, components, slippage, pool);
       } catch {
-        notify({
+        /*notify({
           description:
             "Please try again and approve transactions from your wallet",
           message: "Swap trade cancelled.",
           type: "error",
-        });
+        });*/
+        enqueueSnackbar('I love hooks');
       } finally {
         setPendingTx(false);
       }

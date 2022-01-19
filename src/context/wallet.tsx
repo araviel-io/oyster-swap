@@ -6,15 +6,15 @@ import React, {
   useState,
 } from "react";
 import Wallet from "@araviel/safe-wallet-adapter";
-import { Button, Modal } from "antd";
-import {Modal as Modaled} from "@material-ui/core"
+import { Button } from "@material-ui/core"
 import {
   WalletAdapter,
   LedgerWalletAdapter,
 } from "../wallet-adapters";
 import { useConnectionConfig } from "../utils/connection";
 import { useLocalStorageState } from "../utils/utils";
-import { notify } from "../utils/notifications";
+import { useSnackbar } from "notistack";
+//import { notify } from "../utils/notifications";
 
 const ASSET_URL =
   "https://cdn.jsdelivr.net/gh/solana-labs/oyster@main/assets/wallets";
@@ -39,6 +39,7 @@ export function WalletProvider({ children = null as any }) {
 
   const [autoConnect, setAutoConnect] = useState(false);
   const [providerUrl, setProviderUrl] = useLocalStorageState("walletProvider");
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const provider = useMemo(
     () => WALLET_PROVIDERS.find(({ url }) => url === providerUrl),
@@ -70,27 +71,29 @@ export function WalletProvider({ children = null as any }) {
           const keyToDisplay =
             walletPublicKey.length > 20
               ? `${walletPublicKey.substring(
-                  0,
-                  7
-                )}.....${walletPublicKey.substring(
-                  walletPublicKey.length - 7,
-                  walletPublicKey.length
-                )}`
+                0,
+                7
+              )}.....${walletPublicKey.substring(
+                walletPublicKey.length - 7,
+                walletPublicKey.length
+              )}`
               : walletPublicKey;
 
-          notify({
+          /*notify({
             message: "Wallet update",
             description: "Connected to wallet " + keyToDisplay,
-          });
+          });*/
+          enqueueSnackbar("Connected to wallet " + keyToDisplay);
         }
       });
 
       wallet.on("disconnect", () => {
         setConnected(false);
-        notify({
+        /*notify({
           message: "Wallet update",
           description: "Disconnected from wallet",
-        });
+        });*/
+        enqueueSnackbar("Disconnected from wallet ");
         localStorage.removeItem("feeDiscountKey");
       });
     }
@@ -110,7 +113,7 @@ export function WalletProvider({ children = null as any }) {
       setAutoConnect(false);
     }
 
-    return () => {};
+    return () => { };
   }, [wallet, autoConnect]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -133,7 +136,7 @@ export function WalletProvider({ children = null as any }) {
     >
       {children}
 
-{/*
+      {/*
 
       <Modal
         title="Select Wallet"
@@ -146,39 +149,39 @@ export function WalletProvider({ children = null as any }) {
 
 */}
 
-        {WALLET_PROVIDERS.map((provider) => {
-          const onClick = function () {
-            setProviderUrl(provider.url);
-            setAutoConnect(true);
-            close();
-          };
+      {WALLET_PROVIDERS.map((provider) => {
+        const onClick = function () {
+          setProviderUrl(provider.url);
+          setAutoConnect(true);
+          close();
+        };
 
-          return (
-            <Button
-              size="large"
-              type={providerUrl === provider.url ? "primary" : "ghost"}
-              onClick={onClick}
-              icon={
-                <img
-                  alt={`${provider.name}`}
-                  width={20}
-                  height={20}
-                  src={provider.icon}
-                  style={{ marginRight: 8 }}
-                />
-              }
-              style={{
-                display: "block",
-                width: "100%",
-                textAlign: "left",
-                marginBottom: 8,
-              }}
-            >
-              {provider.name}
-            </Button>
-          );
-        })}
-      {/* </Modal> */ }
+        return (
+          <Button
+            size="large"
+            variant={providerUrl === provider.url ? "outlined" : "outlined"}
+            onClick={onClick}
+            startIcon={
+              <img
+                alt={`${provider.name}`}
+                width={20}
+                height={20}
+                src={provider.icon}
+                style={{ marginRight: 8 }}
+              />
+            }
+            style={{
+              display: "flex",
+              width: "100%",
+              textAlign: "left",
+              marginBottom: 8,
+            }}
+          >
+            {provider.name}
+          </Button>
+        );
+      })}
+      {/* </Modal> */}
     </WalletContext.Provider>
   );
 }

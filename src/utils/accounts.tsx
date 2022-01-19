@@ -12,9 +12,10 @@ import { programIds, SWAP_HOST_FEE_ADDRESS, WRAPPED_SAFE_MINT } from "./ids";
 import { AccountLayout, u64, MintInfo, MintLayout } from "@safecoin/safe-token";
 import { usePools } from "./pools";
 import { TokenAccount, PoolInfo } from "./../models";
-import { notify } from "./notifications";
+//import { notify } from "./notifications";
 import { chunks } from "./utils";
 import { EventEmitter } from "./eventEmitter";
+import { useSnackbar } from "notistack";
 
 const AccountsContext = React.createContext<any>(null);
 
@@ -574,6 +575,7 @@ const getMultipleAccountsCore = async (
 };
 
 export function useMint(key?: string | PublicKey) {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const connection = useConnection();
   const [mint, setMint] = useState<MintInfo>();
 
@@ -588,10 +590,11 @@ export function useMint(key?: string | PublicKey) {
       .queryMint(connection, id)
       .then(setMint)
       .catch((err) =>
-        notify({
+        /*notify({
           message: err.message,
           type: "error",
-        })
+        })*/
+        enqueueSnackbar(err.message)
       );
 
     const dispose = accountEmitter.onAccount((e) => {
@@ -618,7 +621,7 @@ export function useUserAccounts() {
 export function useAccount(pubKey?: PublicKey) {
   const connection = useConnection();
   const [account, setAccount] = useState<TokenAccount>();
-
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const key = pubKey?.toBase58();
   useEffect(() => {
     const query = async () => {
@@ -628,10 +631,12 @@ export function useAccount(pubKey?: PublicKey) {
         }
 
         const acc = await cache.queryAccount(connection, key).catch((err) =>
-          notify({
+          /*notify({
             message: err.message,
             type: "error",
-          })
+          })*/
+         // enqueueSnackbar(err.message);
+         console.log(err)
         );
         if (acc) {
           setAccount(acc);

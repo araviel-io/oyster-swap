@@ -9,7 +9,7 @@ import {
 import { sendTransaction, useConnection } from "./connection";
 import { useEffect, useMemo, useState } from "react";
 import { Token, MintLayout, AccountLayout } from "@safecoin/safe-token";
-import { notify } from "./notifications";
+//import { notify } from "./notifications";
 import {
   cache,
   getCachedAccount,
@@ -57,11 +57,11 @@ export const swap = async (
   pool?: PoolInfo
 ) => {
   if (!pool || !components[0].account) {
-    notify({
+    /*notify({
       type: "error",
       message: `Pool doesn't exsist.`,
       description: `Swap trade cancelled`,
-    });
+    });*/
     return;
   }
 
@@ -167,11 +167,11 @@ export const swap = async (
     signers
   );
 
-  notify({
+  /*notify({
     message: "Trade executed.",
     type: "success",
     description: `Transaction - ${tx}`,
-  });
+  });*/
 };
 
 export const addLiquidity = async (
@@ -449,11 +449,11 @@ async function _addLiquidityExistingPool(
   connection: Connection,
   wallet: any
 ) {
-  notify({
+  /*notify({
     message: "Adding Liquidity...",
     description: "Please review transactions to approve.",
     type: "warn",
-  });
+  });*/
 
   const poolMint = await cache.queryMint(connection, pool.pubkeys.mint);
   if (!poolMint.mintAuthority) {
@@ -585,11 +585,11 @@ async function _addLiquidityExistingPool(
     signers
   );
 
-  notify({
+  /*notify({
     message: "Pool Funded. Happy trading.",
     type: "success",
     description: `Transaction - ${tx}`,
-  });
+  });*/
 }
 
 async function _addLiquidityExactOneExistingPool(
@@ -598,11 +598,11 @@ async function _addLiquidityExactOneExistingPool(
   connection: Connection,
   wallet: any
 ) {
-  notify({
+  /*notify({
     message: "Adding Liquidity...",
     description: "Please review transactions to approve.",
     type: "warn",
-  });
+  });*/
 
   const poolMint = await cache.queryMint(connection, pool.pubkeys.mint);
   if (!poolMint.mintAuthority) {
@@ -712,11 +712,11 @@ async function _addLiquidityExactOneExistingPool(
     signers
   );
 
-  notify({
+  /*notify({
     message: "Pool Funded. Happy trading.",
     type: "success",
     description: `Transaction - ${tx}`,
-  });
+  });*/
 }
 
 function findOrCreateAccountByMint(
@@ -907,18 +907,18 @@ async function _addLiquidityNewPool(
   components: LiquidityComponent[],
   options: PoolConfig
 ) {
-  notify({
+  /*notify({
     message: "Creating new pool...",
     description: "Please review transactions to approve.",
     type: "warn",
-  });
+  });*/
 
   if (components.some((c) => !c.account)) {
-    notify({
+    /*notify({
       message: "You need to have balance for all legs in the basket...",
       description: "Please review inputs.",
       type: "error",
-    });
+    });*/
     return;
   }
 
@@ -1016,17 +1016,17 @@ async function _addLiquidityNewPool(
     ...signers,
   ]);
 
-  notify({
+  /*notify({
     message: "Accounts created",
     description: `Transaction ${tx}`,
     type: "success",
-  });
+  });*/
 
-  notify({
+  /*notify({
     message: "Adding Liquidity...",
     description: "Please review transactions to approve.",
     type: "warn",
-  });
+  });*/
 
   signers = [];
   instructions = [];
@@ -1097,11 +1097,11 @@ async function _addLiquidityNewPool(
     [tokenSwapAccount, ...signers]
   );
 
-  notify({
+  /*notify({
     message: "Pool Funded. Happy trading.",
     type: "success",
     description: `Transaction - ${tx}`,
-  });
+  });*/
 }
 
 function approveAmount(

@@ -9,7 +9,7 @@ import {
 } from "@safecoin/web3.js";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { setProgramIds } from "./ids";
-import { notify } from "./notifications";
+//import { notify } from "./notifications";
 import { ExplorerLink } from "../components/explorerLink";
 import {
   TokenListProvider,
@@ -18,6 +18,7 @@ import {
   Strategy,
 } from "./clist";
 import { cache, getMultipleAccounts } from "./accounts";
+import { useSnackbar } from "notistack";
 
 export type ENV = "mainnet-beta" | "testnet" | "devnet" | "localnet";
 
@@ -263,6 +264,7 @@ export const sendTransaction = async (
 
   const txid = await connection.sendRawTransaction(rawTransaction, options);
 
+
   if (awaitConfirmation) {
     const status = (
       await connection.confirmTransaction(
@@ -273,7 +275,8 @@ export const sendTransaction = async (
 
     if (status?.err) {
       const errors = await getErrorForTransaction(connection, txid);
-      notify({
+      
+      /*notify({
         message: "Transaction failed...",
         description: (
           <>
@@ -284,7 +287,8 @@ export const sendTransaction = async (
           </>
         ),
         type: "error",
-      });
+      });*/
+
 
       throw new Error(
         `Raw transaction ${txid} failed (${JSON.stringify(status)})`

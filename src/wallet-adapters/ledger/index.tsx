@@ -4,7 +4,7 @@ import type { Transaction } from "@safecoin/web3.js";
 import EventEmitter from "eventemitter3";
 import { PublicKey } from "@safecoin/web3.js";
 import TransportWebUSB from "@ledgerhq/hw-transport-webusb";
-import { notify } from "../../utils/notifications";
+//import { notify } from "../../utils/notifications";
 import { getPublicKey, signTransaction } from "./core";
 import { DEFAULT_PUBLIC_KEY, WalletAdapter } from "../types";
 
@@ -72,10 +72,11 @@ export class LedgerWalletAdapter extends EventEmitter implements WalletAdapter {
       this._publicKey = await getPublicKey(this._transport);
       this.emit("connect", this._publicKey);
     } catch (error) {
-      notify({
+      /*notify({
         message: "Ledger Error",
         description: error.message,
-      });
+      });*/
+      console.log(error)
       await this.disconnect();
     } finally {
       this._connecting = false;
