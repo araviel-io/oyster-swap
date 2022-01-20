@@ -4,6 +4,7 @@
 
 body {
   --row-highlight: @background-color-base;
+  font-family: Poppins,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 .AppContainer {
   max-width:1100px;
@@ -51,7 +52,6 @@ body {
   width: 1100px;
   top: 0px;
   position: relative;
-  padding: 1rem;
   z-index: 2;
   min-height: 64px;
 
@@ -82,8 +82,8 @@ body {
 }
 
 .App-Bar-left {
+  margin-left: 44px;
   box-sizing: border-box;
-  margin: 0px;
   min-width: 0px;
   display: flex;
   padding: 0px;
@@ -91,7 +91,21 @@ body {
   align-items: center;
   width: fit-content;
 }
-
+.App-Bar-left-title {
+  font-size: 1.4993rem;
+    background: linear-gradient(
+160deg
+, rgba(10,10,20,1) 0%, rgba(10,10,50,0.5) 100%);
+    font-family: Poppins,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: 500;
+    line-height: 1.334;
+    letter-spacing: 3px;
+    background-clip: text;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .App-Bar-right {
   display: flex;
   flex-direction: row;

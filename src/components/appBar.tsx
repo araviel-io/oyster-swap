@@ -12,31 +12,34 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
   const history = useHistory();
 
   const TopBar = (
-    <div className="App-Bar">
-      <div className="App-Bar-left">
-        
-        <img
-          src={powerlogo}
-          alt="sPortal"
-          className="PW-Logo"
-        />
-        Solstice Staking Portal
-        {props.left}
-      </div>
-      <div className="App-Bar-right">
-        <WalletConnect>
-          <AccountInfo />
-        </WalletConnect>
-        {connected && (
-          <Button
-            type="text"
-            size="large"
-            onClick={() => history.push({ pathname: "/pool" })}
-          >
-            My Pools
-          </Button>
-        )}
-        {props.right}
+    <div style={{ paddingLeft: '24px', paddingRight: '24px' }}>
+      <div className="App-Bar">
+        <div className="App-Bar-left">
+
+          <img
+            src={powerlogo}
+            alt="sPortal"
+            className="PW-Logo"
+          />
+          <div className="App-Bar-left-title">
+            Solstice Staking Portal</div>
+          {props.left}
+        </div>
+        <div className="App-Bar-right">
+          <WalletConnect>
+            <AccountInfo />
+          </WalletConnect>
+          {connected && (
+            <Button
+              type="text"
+              size="large"
+              onClick={() => history.push({ pathname: "/pool" })}
+            >
+              My Pools
+            </Button>
+          )}
+          {props.right}
+        </div>
       </div>
     </div>
   );

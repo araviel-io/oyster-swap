@@ -7,8 +7,9 @@ import { Settings } from "./settings";
 import { SettingOutlined } from "@ant-design/icons";
 import { AppBar } from "./appBar";
 import { useHistory, useLocation } from "react-router-dom";
-import { createStyles, makeStyles, Step, StepButton, StepConnector, StepContent, StepIconProps, StepLabel, Stepper, Theme, withStyles } from "@material-ui/core";
+import { Container, createStyles, makeStyles, Step, StepButton, StepConnector, StepContent, StepIconProps, StepLabel, Stepper, Theme, Typography, withStyles } from "@material-ui/core";
 import clsx from "clsx";
+import { isMobile } from "react-device-detect";
 //const { Text } = Typography;
 
 export const ExchangeView = (props: {}) => {
@@ -20,20 +21,14 @@ export const ExchangeView = (props: {}) => {
       render: () => {
         return <TradeEntry />;
       },
-    }/*,
-    {
-      key: "pool",
-      tab: <div style={tabStyle}>Pool</div>,
-      render: () => {
-        return <AddToLiquidity />;
-      },
-    },*/
+    }
   ];
 
   const location = useLocation();
   const history = useHistory();
   const activeTab = location.pathname.indexOf("add") < 0 ? "trade" : "pool";
 
+  const [isSwapped, setisSwapped] = useState(false);
   const [step, setStep] = useState(1);
   const ColorlibConnector = withStyles({
     alternativeLabel: {
@@ -98,10 +93,10 @@ export const ExchangeView = (props: {}) => {
 
     return (
       <div
-      className={clsx(classes.root, {
-        [classes.active]: active,
-        [classes.completed]: completed,
-      })}
+        className={clsx(classes.root, {
+          [classes.active]: active,
+          [classes.completed]: completed,
+        })}
       >
         {icons[String(props.icon)]}
       </div>
@@ -111,6 +106,10 @@ export const ExchangeView = (props: {}) => {
     createStyles({
       root: {
         width: '100%',
+      },
+      description: {
+        marginTop: theme.spacing(4),
+        textAlign: "left",
       },
       preview: {
         border: "2px dashed rgba(145, 158, 171, 0.24)",
@@ -141,7 +140,7 @@ export const ExchangeView = (props: {}) => {
 
     },
   });
-  
+
   const clstep = useStepsStyle();
   const activeStep = 6;
 
@@ -164,56 +163,80 @@ export const ExchangeView = (props: {}) => {
           </Popover>
         }
       />
+      <div className={classes.spacer}></div>
+      <Container maxWidth="md">
+        <div className={classes.root}>
+          <Stepper activeStep={activeStep} style={{ padding: 0 }} orientation="horizontal" connector={<ColorlibConnector />} alternativeLabel>
+            {/* Pre select with disabled dropdown ethereum */}
+            <Step className={clstep.root}
+              expanded={activeStep >= 0}
+            //disabled={preventNavigation || isRedeemComplete}
+            >
+              <StepButton onClick={() => setStep(0)}>
+                <StepLabel StepIconComponent={ColorlibStepIcon}><b>POWR </b>Source</StepLabel>
+              </StepButton>
+              {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
+            </Step>
+            <Step className={clstep.root}
+              expanded={activeStep >= 1}
+            //disabled={ /* preventNavigation || isRedeemComplete || activeStep === 0*/ }
+            >
+              <StepButton onClick={() => setStep(1)}>
+                <StepLabel StepIconComponent={ColorlibStepIcon}><b>SOLSTICE </b>Target</StepLabel>
+              </StepButton>
+              {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
+            </Step>
+            <Step className={clstep.root} expanded={activeStep >= 2} disabled={true}>
+              <StepButton>
+                <StepLabel StepIconComponent={ColorlibStepIcon}>Send tokens</StepLabel>
+              </StepButton>
+            </Step>
+            <Step className={clstep.root} expanded={activeStep >= 3}>
+              <StepButton
+                onClick={() => setStep(3)}
+              //disabled={!isSendComplete}
+              >
+                <StepLabel StepIconComponent={ColorlibStepIcon}>Redeem tokens</StepLabel>
+              </StepButton>
+            </Step>
+            <Step className={clstep.root} expanded={activeStep >= 4}>
+              <StepButton
+                onClick={() => setStep(4)}
+              >
+                <StepLabel style={{ fontWeight: 200 }} StepIconComponent={ColorlibStepIcon}>Swap</StepLabel>
+              </StepButton>
+            </Step>
+          </Stepper>
+        </div>
+      </Container>
+      <div className={classes.spacer}></div>
+      <Container maxWidth="md">
+        <div style={isMobile ? {} : { display: 'flex', justifyContent: "space-around", alignItems: "center" }}>
 
-      <Stepper activeStep={activeStep} orientation="horizontal" connector={<ColorlibConnector />} alternativeLabel>
-        {/* Pre select with disabled dropdown ethereum */}
-        <Step className={clstep.root}
-          expanded={activeStep >= 0}
-        //disabled={preventNavigation || isRedeemComplete}
-        >
-          <StepButton onClick={() => setStep(0)}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}><b>POWR </b>Source</StepLabel>
-          </StepButton>
-          {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
-        </Step>
-        <Step className={clstep.root}
-          expanded={activeStep >= 1}
-        //disabled={ /* preventNavigation || isRedeemComplete || activeStep === 0*/ }
-        >
-          <StepButton onClick={() => setStep(1)}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}><b>SOLSTICE </b>Target</StepLabel>
-          </StepButton>
-          {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
-        </Step>
-        <Step className={clstep.root} expanded={activeStep >= 2} disabled={true}>
-          <StepButton>
-            <StepLabel StepIconComponent={ColorlibStepIcon}>Send tokens</StepLabel>
-          </StepButton>
-        </Step>
-        <Step className={clstep.root} expanded={activeStep >= 3}>
-          <StepButton
-            onClick={() => setStep(3)}
-          //disabled={!isSendComplete}
-          >
-            <StepLabel StepIconComponent={ColorlibStepIcon}>Redeem tokens</StepLabel>
-          </StepButton>
-        </Step>
-        <Step className={clstep.root} expanded={activeStep >= 4}>
-          <StepButton
-            onClick={() => setStep(4)}
-          >
-            <StepLabel StepIconComponent={ColorlibStepIcon}>Swap</StepLabel>
-          </StepButton>
-        </Step>
-      </Stepper>
-      <Card
-        className="exchange-card"
-        headStyle={{ padding: 0 }}
-        bodyStyle={{ position: "relative" }}
+          <div>
+            <Typography variant="h4">
+              {isSwapped ? ("Unwrapping") : ("")}<span style={{ color: '#0ac2af', fontSize: "40px" }}>.</span>
+            </Typography>
+            <Typography className={classes.description}>
+              {isSwapped ? (
+                <div>Let's unwrap them to fully land
+                  <br /> on blockchain with native Solstice.</div>
+              ) : (
+                <div>This last part will swap <b>1:1</b> your received
+                  <br />wormhole tokens to Wrapped Solstice.</div>
+              )}
+            </Typography>
+          </div>
+          <Card
+            className="exchange-card"
+            headStyle={{ padding: 0 }}
+            bodyStyle={{ position: "relative" }}
 
-      >
-        {tabList.find((t) => t.key === activeTab)?.render()}
-      </Card>
+          >
+            {tabList.find((t) => t.key === activeTab)?.render()}
+          </Card>
+        </div>
+      </Container>
     </>
   );
 };
