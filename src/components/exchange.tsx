@@ -10,6 +10,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Container, createStyles, makeStyles, Step, StepButton, StepConnector, StepContent, StepIconProps, StepLabel, Stepper, Theme, Typography, withStyles } from "@material-ui/core";
 import clsx from "clsx";
 import { isMobile } from "react-device-detect";
+import Footer from "./Footer";
 //const { Text } = Typography;
 
 export const ExchangeView = (props: {}) => {
@@ -32,7 +33,7 @@ export const ExchangeView = (props: {}) => {
   const [step, setStep] = useState(1);
   const ColorlibConnector = withStyles({
     alternativeLabel: {
-      top: 39,
+      top: 23,
       marginLeft: "10%",
       marginRight: "10%",
     },
@@ -124,6 +125,9 @@ export const ExchangeView = (props: {}) => {
       spacer: {
         height: theme.spacing(3),
       },
+      lspacer: {
+        height: theme.spacing(8),
+      },
       instructions: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
@@ -163,7 +167,7 @@ export const ExchangeView = (props: {}) => {
           </Popover>
         }
       />
-      <div className={classes.spacer}></div>
+      <div className={classes.lspacer}></div>
       <Container maxWidth="md">
         <div className={classes.root}>
           <Stepper activeStep={activeStep} style={{ padding: 0 }} orientation="horizontal" connector={<ColorlibConnector />} alternativeLabel>
@@ -209,13 +213,12 @@ export const ExchangeView = (props: {}) => {
           </Stepper>
         </div>
       </Container>
-      <div className={classes.spacer}></div>
+      <div className={classes.lspacer}></div>
       <Container maxWidth="md">
         <div style={isMobile ? {} : { display: 'flex', justifyContent: "space-around", alignItems: "center" }}>
-
-          <div>
+          <div style={{textAlign:"left"}}>
             <Typography variant="h4">
-              {isSwapped ? ("Unwrapping") : ("")}<span style={{ color: '#0ac2af', fontSize: "40px" }}>.</span>
+              {isSwapped ? ("Unwrapping") : ("Swapping")}<span style={{ color: '#0ac2af', fontSize: "40px" }}>.</span>
             </Typography>
             <Typography className={classes.description}>
               {isSwapped ? (
@@ -229,14 +232,17 @@ export const ExchangeView = (props: {}) => {
           </div>
           <Card
             className="exchange-card"
+            style={{border:0}}
             headStyle={{ padding: 0 }}
-            bodyStyle={{ position: "relative" }}
+            bodyStyle={{ position: "relative", padding:25 }}
 
           >
             {tabList.find((t) => t.key === activeTab)?.render()}
           </Card>
         </div>
       </Container>
+      
     </>
+
   );
 };

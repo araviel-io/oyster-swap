@@ -249,7 +249,7 @@ export const TradeView = () => {
         style={{ background: "red" }}
         className="exchange-card"
         headStyle={{ padding: 0 }}
-        bodyStyle={{ position: "relative" }}
+        bodyStyle={{ position: "relative"}}
       >
         <TradeEntry />
       </Card>
