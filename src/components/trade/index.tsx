@@ -29,7 +29,7 @@ import { PoolInfo } from "../../models";
 import { useEnrichedPools } from "../../context/market";
 import { AppBar } from "../appBar";
 import { Settings } from "../settings";
-import { MigrationModal } from "../migration";
+//import { MigrationModal } from "../migration";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -232,7 +232,7 @@ export const TradeView = () => {
       >
         <TradeEntry />
       </Card>
-      <MigrationModal />
+      
     </>
   );
 };

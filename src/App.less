@@ -1,7 +1,11 @@
 //@import "~antd/dist/antd.dark.less";
 @import '~antd/dist/antd.compact.less';
 //@import "./ant-custom.less";
-
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255,255,255,.65);
+}
 body {
   --row-highlight: @background-color-base;
   font-family: Poppins,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
@@ -82,7 +86,7 @@ body {
 }
 
 .App-Bar-left {
-  margin-left: 44px;
+  margin-left: 48px;
   box-sizing: border-box;
   min-width: 0px;
   display: flex;

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Button, Card, Popover } from "antd";
 import { TradeEntry } from "./trade";
-// TODO: remove AddToLiquidity for w integration
-import { AddToLiquidity } from "./pool/add";
 import { Settings } from "./settings";
 import { SettingOutlined } from "@ant-design/icons";
 import { AppBar } from "./appBar";
@@ -166,8 +164,8 @@ export const ExchangeView = (props: {}) => {
           </Popover>
         }
       />
-      <div className={classes.lspacer}></div>
-      <Container maxWidth="md">
+     
+      <Container maxWidth="md" style={{paddingLeft: 24, paddingRight: 24, marginTop:48}}>
         <div className={classes.root}>
           <Stepper activeStep={activeStep} style={{ padding: 0 }} orientation="horizontal" connector={<ColorlibConnector />} alternativeLabel>
             {/* Pre select with disabled dropdown ethereum */}
@@ -175,7 +173,7 @@ export const ExchangeView = (props: {}) => {
               expanded={activeStep >= 0}
             //disabled={preventNavigation || isRedeemComplete}
             >
-              <StepButton onClick={() => setStep(0)}>
+              <StepButton >
                 <StepLabel StepIconComponent={ColorlibStepIcon}><b>POWR </b>Source</StepLabel>
               </StepButton>
               {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
@@ -184,7 +182,7 @@ export const ExchangeView = (props: {}) => {
               expanded={activeStep >= 1}
             //disabled={ /* preventNavigation || isRedeemComplete || activeStep === 0*/ }
             >
-              <StepButton onClick={() => setStep(1)}>
+              <StepButton >
                 <StepLabel StepIconComponent={ColorlibStepIcon}><b>SOLSTICE </b>Target</StepLabel>
               </StepButton>
               {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
@@ -195,10 +193,7 @@ export const ExchangeView = (props: {}) => {
               </StepButton>
             </Step>
             <Step className={clstep.root} expanded={activeStep >= 3}>
-              <StepButton
-                onClick={() => setStep(3)}
-              //disabled={!isSendComplete}
-              >
+              <StepButton>
                 <StepLabel StepIconComponent={ColorlibStepIcon}>Redeem tokens</StepLabel>
               </StepButton>
             </Step>
