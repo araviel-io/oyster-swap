@@ -30,7 +30,7 @@ export const ExchangeView = (props: {}) => {
   const activeTab = location.pathname.indexOf("add") < 0 ? "trade" : "pool";
 
   const [isSwapped, setisSwapped] = useState(false);
-  const [step, setStep] = useState(1);
+  const [activeStep, setStep] = useState(4);
   const ColorlibConnector = withStyles({
     alternativeLabel: {
       top: 23,
@@ -146,7 +146,6 @@ export const ExchangeView = (props: {}) => {
   });
 
   const clstep = useStepsStyle();
-  const activeStep = 6;
 
   return (
     <>

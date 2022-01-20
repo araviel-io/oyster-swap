@@ -30,7 +30,7 @@ import { useEnrichedPools } from "../../context/market";
 import { AppBar } from "../appBar";
 import { Settings } from "../settings";
 import { MigrationModal } from "../migration";
-
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 export const TradeEntry = () => {
@@ -47,25 +47,6 @@ export const TradeEntry = () => {
   const { slippage } = useSlippageConfig();
   const { tokenMap } = useConnectionConfig();
 
-  const swapAccounts = () => {
-    const tempMint = A.mintAddress;
-    const tempAmount = A.amount;
-    A.setMint(B.mintAddress);
-    A.setAmount(B.amount);
-    B.setMint(tempMint);
-    B.setAmount(tempAmount);
-    // @ts-ignore
-    setPoolOperation((op: PoolOperation) => {
-      switch (+op) {
-        case PoolOperation.SwapGivenInput:
-          return PoolOperation.SwapGivenProceeds;
-        case PoolOperation.SwapGivenProceeds:
-          return PoolOperation.SwapGivenInput;
-        case PoolOperation.Add:
-          return PoolOperation.SwapGivenInput;
-      }
-    });
-  };
 
   const handleSwap = async () => {
     if (A.account && B.mintAddress) {
@@ -118,9 +99,7 @@ export const TradeEntry = () => {
             A.setMint(item);
           }}
         />
-        <Button className="swap-button" onClick={swapAccounts}>
-          ⇅
-        </Button>
+        <KeyboardArrowDownIcon/>
         <CurrencyInput
           title="To (Estimate)"
           onInputChange={(val: any) => {

@@ -29,15 +29,7 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
           <WalletConnect>
             <AccountInfo />
           </WalletConnect>
-          {connected && (
-            <Button
-              type="text"
-              size="large"
-              onClick={() => history.push({ pathname: "/pool" })}
-            >
-              My Pools
-            </Button>
-          )}
+
           {props.right}
         </div>
       </div>
