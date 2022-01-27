@@ -47,7 +47,7 @@ export const TradeEntry = () => {
   const { slippage } = useSlippageConfig();
   const { tokenMap } = useConnectionConfig();
 
-
+  //console.log("tokenmap", tokenMap)
   const handleSwap = async () => {
     if (A.account && B.mintAddress) {
       try {
@@ -64,8 +64,8 @@ export const TradeEntry = () => {
             amount: B.convertAmount(),
           },
         ];
-
-        await swap(connection, wallet, components, slippage, pool);
+        // refresh lead
+        await swap(connection, wallet, components, slippage, pool)
       } catch {
         notify({
           description:
@@ -232,7 +232,7 @@ export const TradeView = () => {
       >
         <TradeEntry />
       </Card>
-      
+
     </>
   );
 };

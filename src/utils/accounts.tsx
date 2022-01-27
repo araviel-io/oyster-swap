@@ -472,7 +472,7 @@ export function AccountsProvider({ children = null as any }) {
               accountsCache.has(id)
             ) {
               accountsCache.set(id, details);
-              //accountEmitter.raiseAccountUpdated(id);
+              accountEmitter.raiseAccountUpdated(id);
             }
           } else if (info.accountInfo.data.length === MintLayout.span) {
             if (mintCache.has(id)) {
@@ -481,7 +481,7 @@ export function AccountsProvider({ children = null as any }) {
               mintCache.set(id, mint);
             }
 
-            //accountEmitter.raiseAccountUpdated(id);
+            accountEmitter.raiseAccountUpdated(id);
           }
 
           if (genericCache.has(id)) {
