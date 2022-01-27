@@ -47,7 +47,6 @@ export const TradeEntry = () => {
   const { slippage } = useSlippageConfig();
   const { tokenMap } = useConnectionConfig();
 
-  //console.log("tokenmap", tokenMap)
   const handleSwap = async () => {
     if (A.account && B.mintAddress) {
       try {

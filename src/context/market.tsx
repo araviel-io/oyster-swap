@@ -470,7 +470,6 @@ function createEnrichedPools(
         "/",
         "-"
       )}`;
-        console.log("fees ", fees, "fees24h", fees24h, "apy", apy, "apy24h", apy24h, "poolData", poolData)
       return {
         key: p.pubkeys.account.toBase58(),
         id: index,

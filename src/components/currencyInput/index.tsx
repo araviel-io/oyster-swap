@@ -31,7 +31,6 @@ export const TokenDisplay = (props: {
   if (showBalance) {
     if (tokenAccount && tokenMint) {
       balance = convert(tokenAccount, tokenMint);
-      console.log("balance", balance)
       hasBalance = balance > 0;
     }
   }
@@ -168,13 +167,10 @@ export const CurrencyInput = (props: {
   });
 
   const userUiBalance = () => {
-    console.log("goodbalance")
     const currentAccount = userAccounts?.find(
       (a) => a.info.mint.toBase58() === props.mint
     );
-    console.log("currentAccount", currentAccount)
     if (currentAccount && mint) {
-      console.log("mint::::", mint)
       return convert(currentAccount, mint);
     }
 

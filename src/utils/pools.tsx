@@ -441,7 +441,6 @@ export const addLiquidity = async (
     if (!options) {
       throw new Error("Options are required to create new pool.");
     }
-    console.log("pools.tsx L444 options", options)
     await _addLiquidityNewPool(wallet, connection, components, options);
   } else {
     await _addLiquidityExistingPool(pool, components, connection, wallet);

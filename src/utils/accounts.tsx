@@ -418,10 +418,8 @@ export function AccountsProvider({ children = null as any }) {
   useEffect(() => {
     
     if (!connection || !publicKey) {
-      console.log("IF account.tsx useEffect")
       setTokenAccounts([]);
     } else {
-      console.log("else account.tsx useEffect")
       // cache host accounts to avoid query during swap
       precacheUserTokenAccounts(connection, SWAP_HOST_FEE_ADDRESS);
 
