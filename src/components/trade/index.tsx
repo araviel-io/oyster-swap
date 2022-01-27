@@ -78,7 +78,6 @@ export const TradeEntry = () => {
       }
     }
   };
-
   return (
     <>
       <div className="input-card">
@@ -88,13 +87,13 @@ export const TradeEntry = () => {
           onInputChange={(val: any) => {
             setPoolOperation(PoolOperation.SwapGivenInput);
             if (A.amount !== val) {
-              setLastTypedAccount(A.mintAddress);
+              setLastTypedAccount('CxLHNd5SikJnpLRCPf7yY8gpcVx9PBFYKKii2ydSYu6J');
             }
 
             A.setAmount(val);
           }}
           amount={A.amount}
-          mint={A.mintAddress}
+          mint={'CxLHNd5SikJnpLRCPf7yY8gpcVx9PBFYKKii2ydSYu6J'}
           onMintChange={(item) => {
             A.setMint(item);
           }}
@@ -105,13 +104,13 @@ export const TradeEntry = () => {
           onInputChange={(val: any) => {
             setPoolOperation(PoolOperation.SwapGivenProceeds);
             if (B.amount !== val) {
-              setLastTypedAccount(B.mintAddress);
+              setLastTypedAccount('8aiTkfqukvBQa3Tp1fKgPiSuRHRYXgNhWD4eBKQgvskG');
             }
 
             B.setAmount(val);
           }}
           amount={B.amount}
-          mint={B.mintAddress}
+          mint={'8aiTkfqukvBQa3Tp1fKgPiSuRHRYXgNhWD4eBKQgvskG'}
           onMintChange={(item) => {
             B.setMint(item);
           }}
