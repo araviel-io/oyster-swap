@@ -165,12 +165,23 @@
     {
       "chainId": 103,
       "address": "8aiTkfqukvBQa3Tp1fKgPiSuRHRYXgNhWD4eBKQgvskG",
-      "symbol": "stFOURTH",
-      "name": "dev FOURTH",
+      "symbol": "wWSAFE",
+      "name": "Wormhole Wrapped Safecoin",
       "decimals": 6,
       "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png",
       "tags": [
         "stablecoin"
+      ]
+    },
+    {
+      "chainId": 103,
+      "address": "Safe111111111111111111111111111111111111111",
+      "symbol": "WSAFE",
+      "name": "Wrapped Safecoin",
+      "decimals": 6,
+      "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png",
+      "tags": [
+        "wrapped"
       ]
     }
   ],

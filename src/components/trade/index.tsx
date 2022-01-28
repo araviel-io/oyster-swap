@@ -86,13 +86,13 @@ export const TradeEntry = () => {
           onInputChange={(val: any) => {
             setPoolOperation(PoolOperation.SwapGivenInput);
             if (A.amount !== val) {
-              setLastTypedAccount('CxLHNd5SikJnpLRCPf7yY8gpcVx9PBFYKKii2ydSYu6J');
+              setLastTypedAccount('8aiTkfqukvBQa3Tp1fKgPiSuRHRYXgNhWD4eBKQgvskG');
             }
 
             A.setAmount(val);
           }}
           amount={A.amount}
-          mint={'CxLHNd5SikJnpLRCPf7yY8gpcVx9PBFYKKii2ydSYu6J'}
+          mint={'8aiTkfqukvBQa3Tp1fKgPiSuRHRYXgNhWD4eBKQgvskG'}
           onMintChange={(item) => {
             A.setMint(item);
           }}
@@ -103,13 +103,13 @@ export const TradeEntry = () => {
           onInputChange={(val: any) => {
             setPoolOperation(PoolOperation.SwapGivenProceeds);
             if (B.amount !== val) {
-              setLastTypedAccount('8aiTkfqukvBQa3Tp1fKgPiSuRHRYXgNhWD4eBKQgvskG');
+              setLastTypedAccount('Safe111111111111111111111111111111111111111');
             }
 
             B.setAmount(val);
           }}
           amount={B.amount}
-          mint={'8aiTkfqukvBQa3Tp1fKgPiSuRHRYXgNhWD4eBKQgvskG'}
+          mint={'Safe111111111111111111111111111111111111111'}
           onMintChange={(item) => {
             B.setMint(item);
           }}

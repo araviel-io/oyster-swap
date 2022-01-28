@@ -283,8 +283,8 @@ const isValidAddress = (address: string) => {
 };
 
 function getDefaultTokens(tokens: TokenInfo[], search: string) {
-  let defaultBase = "stTHIRD";
-  let defaultQuote = "stFOURTH";
+  let defaultBase = "wWSAFE";
+  let defaultQuote = "WSAFE";
 
   const nameToToken = tokens.reduce((map, item) => {
     map.set(item.symbol, item);
