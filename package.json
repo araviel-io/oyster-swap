@@ -11,6 +11,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@safecoin/safe-token": "0.0.11",
+    "@safecoin/safe-token-swap": "^0.1.2",
     "@safecoin/web3.js": "^1.2.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

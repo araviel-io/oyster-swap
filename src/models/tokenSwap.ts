@@ -1,9 +1,9 @@
-import { Numberu64 } from "./../utils/token-swap";
+import { Numberu64 } from "@safecoin/safe-token-swap";
 import { PublicKey, Account, TransactionInstruction } from "@safecoin/web3.js";
 import * as BufferLayout from "buffer-layout";
 import { CurveType, PoolConfig } from "./pool";
 
-export { TokenSwap } from "./../utils/token-swap";
+export { TokenSwap } from "@safecoin/safe-token-swap";
 
 /**
  * Layout for a public key
