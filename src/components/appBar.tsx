@@ -4,7 +4,7 @@ import { useWallet } from "../context/wallet";
 import { AccountInfo } from "./accountInfo";
 import { WalletConnect } from "./walletConnect";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import powerlogo from "../assets/powrlogo.svg"
+import safebridge from "../assets/safebridge.svg"
 
 export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
   const { connected } = useWallet();
@@ -17,12 +17,10 @@ export const AppBar = (props: { left?: JSX.Element; right?: JSX.Element }) => {
         <div className="App-Bar-left">
 
           <img
-            src={powerlogo}
-            alt="sPortal"
+            src={safebridge}
+            alt="SafeBridge"
             className="PW-Logo"
           />
-          <div className="App-Bar-left-title">
-            Solstice Staking Portal</div>
           {props.left}
         </div>
         <div className="App-Bar-right">

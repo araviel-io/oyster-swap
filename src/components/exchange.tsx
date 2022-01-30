@@ -5,7 +5,7 @@ import { Settings } from "./settings";
 import { SettingOutlined } from "@ant-design/icons";
 import { AppBar } from "./appBar";
 import { useHistory, useLocation } from "react-router-dom";
-import { Container, createStyles, makeStyles, Step, StepButton, StepConnector, StepContent, StepIconProps, StepLabel, Stepper, Theme, Typography, withStyles } from "@material-ui/core";
+import { Container, createStyles, createTheme, makeStyles, Step, StepButton, StepConnector, StepContent, StepIconProps, StepLabel, Stepper, Theme, ThemeProvider, Typography, withStyles } from "@material-ui/core";
 import clsx from "clsx";
 import { isMobile } from "react-device-detect";
 import Footer from "./Footer";
@@ -144,7 +144,23 @@ export const ExchangeView = (props: {}) => {
   });
 
   const clstep = useStepsStyle();
-
+  const theme = createTheme({
+    typography: {
+      fontFamily: [
+        'Poppins',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+    },
+  });
   return (
     <>
       <AppBar
@@ -164,8 +180,8 @@ export const ExchangeView = (props: {}) => {
           </Popover>
         }
       />
-     
-      <Container maxWidth="md" style={{paddingLeft: 24, paddingRight: 24, marginTop:48}}>
+
+      <Container maxWidth="md" style={{ paddingLeft: 24, paddingRight: 24, marginTop: 48 }}>
         <div className={classes.root}>
           <Stepper activeStep={activeStep} style={{ padding: 0 }} orientation="horizontal" connector={<ColorlibConnector />} alternativeLabel>
             {/* Pre select with disabled dropdown ethereum */}
@@ -210,32 +226,34 @@ export const ExchangeView = (props: {}) => {
       <div className={classes.lspacer}></div>
       <Container maxWidth="md">
         <div style={isMobile ? {} : { display: 'flex', justifyContent: "space-around", alignItems: "center" }}>
-          <div style={{textAlign:"left"}}>
-            <Typography variant="h4">
-              {isSwapped ? ("Unwrapping") : ("Swapping")}<span style={{ color: '#0ac2af', fontSize: "40px" }}>.</span>
-            </Typography>
-            <Typography className={classes.description}>
-              {isSwapped ? (
-                <div>Let's unwrap them to fully land
-                  <br /> on blockchain with native Solstice.</div>
-              ) : (
-                <div>This last part will swap <b>1:1</b> your received
-                  <br />wormhole tokens to Wrapped Solstice.</div>
-              )}
-            </Typography>
+          <div style={{ textAlign: "left" }}>
+            <ThemeProvider theme={theme}>
+              <Typography variant="h4">
+                {isSwapped ? ("Unwrapping") : ("Swapping")}<span style={{ color: '#0ac2af', fontSize: "40px" }}>.</span>
+              </Typography>
+              <Typography className={classes.description}>
+                {isSwapped ? (
+                  <div>Let's unwrap them to fully land
+                    <br /> on blockchain with native Solstice.</div>
+                ) : (
+                  <div>This last part will swap <b>1:1</b> your received
+                    <br />wormhole tokens to Wrapped Solstice.</div>
+                )}
+              </Typography>
+            </ThemeProvider>
           </div>
           <Card
             className="exchange-card"
-            style={{border:0}}
+            style={{ border: 0 }}
             headStyle={{ padding: 0 }}
-            bodyStyle={{ position: "relative", padding:25 }}
+            bodyStyle={{ position: "relative", padding: 25 }}
 
           >
             {tabList.find((t) => t.key === activeTab)?.render()}
           </Card>
         </div>
       </Container>
-      
+
     </>
 
   );
