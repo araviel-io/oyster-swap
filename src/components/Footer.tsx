@@ -5,6 +5,8 @@ import Medium from "../assets/Medium.svg";
 import Telegram from "../assets/Telegram.svg";
 import Twitter from "../assets/Twitter.svg";
 import sPortal from "../assets/sportal.svg";
+import Safebridge from "../assets/safebridge_l_i.svg";
+
 import React from "react";
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -18,20 +20,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   builtWithContainer: {
+    color:"white",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    opacity: 0.5,
+    opacity: 0.7,
     marginTop: theme.spacing(1),
   },
-  sportalIcon: {
+  safeBridgeIcon: {
     height: 48,
     width: 48,
-    filter: "contrast(0.3)",
-    transition: "filter 0.5s",
-    "&:hover": {
-      filter: "contrast(0.8)",
-    },
     verticalAlign: "middle",
     marginRight: theme.spacing(1),
   },
@@ -91,9 +89,9 @@ export default function Footer() {
             rel="noopener noreferrer"
           >
             <img
-              src={sPortal}
-              alt="sPortal"
-              className={classes.sportalIcon}
+              src={Safebridge}
+              alt="safebridge"
+              className={classes.safeBridgeIcon}
             />
           </a>
         </div>

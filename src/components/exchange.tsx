@@ -78,6 +78,7 @@ export const ExchangeView = (props: {}) => {
     },
   });
 
+
   function ColorlibStepIcon(props: StepIconProps) {
     const classes = useColorlibStepIconStyles();
     const { active, completed } = props;
@@ -129,6 +130,17 @@ export const ExchangeView = (props: {}) => {
       instructions: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
+      },
+      customLabelStyle: {
+        fontSize: 21,
+        letterSpacing:"inherit",
+        color: "#484848",
+        "&.MuiStepLabel-active": {
+          fontWeight: "500",
+        },
+        "&.MuiStepLabel-completed": {
+          fontWeight: "400",
+        },
       },
     }),
   );
@@ -190,7 +202,7 @@ export const ExchangeView = (props: {}) => {
             //disabled={preventNavigation || isRedeemComplete}
             >
               <StepButton >
-                <StepLabel StepIconComponent={ColorlibStepIcon}><b>POWR </b>Source</StepLabel>
+                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}><b>POWR </b>Source</StepLabel>
               </StepButton>
               {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
             </Step>
@@ -199,25 +211,25 @@ export const ExchangeView = (props: {}) => {
             //disabled={ /* preventNavigation || isRedeemComplete || activeStep === 0*/ }
             >
               <StepButton >
-                <StepLabel StepIconComponent={ColorlibStepIcon}><b>SOLSTICE </b>Target</StepLabel>
+                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}><b>SOLSTICE </b>Target</StepLabel>
               </StepButton>
               {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
             </Step>
             <Step className={clstep.root} expanded={activeStep >= 2} disabled={true}>
               <StepButton>
-                <StepLabel StepIconComponent={ColorlibStepIcon}>Send tokens</StepLabel>
+                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}>Send tokens</StepLabel>
               </StepButton>
             </Step>
             <Step className={clstep.root} expanded={activeStep >= 3}>
               <StepButton>
-                <StepLabel StepIconComponent={ColorlibStepIcon}>Redeem tokens</StepLabel>
+                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}>Redeem tokens</StepLabel>
               </StepButton>
             </Step>
             <Step className={clstep.root} expanded={activeStep >= 4}>
               <StepButton
                 onClick={() => setStep(4)}
               >
-                <StepLabel style={{ fontWeight: 200 }} StepIconComponent={ColorlibStepIcon}>Swap</StepLabel>
+                <StepLabel classes={{ label: classes.customLabelStyle }} style={{ fontWeight: 200 }} StepIconComponent={ColorlibStepIcon}>Swap</StepLabel>
               </StepButton>
             </Step>
           </Stepper>
