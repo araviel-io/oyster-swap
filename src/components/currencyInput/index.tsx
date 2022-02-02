@@ -13,7 +13,9 @@ import { useConnectionConfig } from "../../utils/connection";
 import { PoolIcon, TokenIcon } from "../tokenIcon";
 import { PublicKey } from "@safecoin/web3.js";
 import { PoolInfo, TokenAccount } from "../../models";
-
+import { AccountInfo } from "../accountInfo";
+import { NativeBalance } from "../nativebalance";
+import { NATIVE_MINT } from "@safecoin/safe-token";
 const { Option } = Select;
 
 export const TokenDisplay = (props: {
@@ -178,7 +180,7 @@ export const CurrencyInput = (props: {
   };
 
   return (
-    // TODO: pass a property to change balance from parent
+    
     <Card
       className="ccy-input"
       style={{ borderRadius: 20 }}
@@ -193,7 +195,12 @@ export const CurrencyInput = (props: {
             props.onInputChange && props.onInputChange(userUiBalance())
           }
         >
-          Balance: {userUiBalance().toFixed(6)}
+          {props.mint === "Safe111111111111111111111111111111111111111" ? (
+            <div>Balance: <NativeBalance /></div>
+
+          ): (
+            <div>Balance: {userUiBalance().toFixed(6)}</div>
+          )}
         </div>
       </div>
       <div className="ccy-input-header" style={{ padding: "0px 10px 5px 7px" }}>

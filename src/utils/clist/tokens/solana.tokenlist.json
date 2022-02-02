@@ -176,8 +176,8 @@
     {
       "chainId": 103,
       "address": "Safe111111111111111111111111111111111111111",
-      "symbol": "WSAFE",
-      "name": "Wrapped Safecoin",
+      "symbol": "SAFE",
+      "name": "Safecoin",
       "decimals": 6,
       "logoURI": "https://cdn.jsdelivr.net/gh/trustwallet/assets@master/blockchains/bitcoin/info/logo.png",
       "tags": [
