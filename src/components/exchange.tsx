@@ -28,7 +28,7 @@ export const ExchangeView = (props: {}) => {
   const activeTab = location.pathname.indexOf("add") < 0 ? "trade" : "pool";
 
   const [isSwapped, setisSwapped] = useState(false);
-  const [activeStep, setStep] = useState(4);
+  const [activeStep, setStep] = useState(2);
   const ColorlibConnector = withStyles({
     alternativeLabel: {
       top: 23,
@@ -84,11 +84,8 @@ export const ExchangeView = (props: {}) => {
     const { active, completed } = props;
 
     const icons: { [index: string]: React.ReactElement } = {
-      1: <div>1</div>,
-      2: <div>2</div>,
-      3: <div>3</div>,
-      4: <div>4</div>,
-      5: <div>5</div>,
+      1: <div>1-4</div>,
+      2: <div>5</div>,
     };
 
     return (
@@ -195,39 +192,16 @@ export const ExchangeView = (props: {}) => {
 
       <Container maxWidth="md" style={{ paddingLeft: 24, paddingRight: 24, marginTop: 48 }}>
         <div className={classes.root}>
-          <Stepper activeStep={activeStep} style={{ padding: 0 }} orientation="horizontal" connector={<ColorlibConnector />} alternativeLabel>
+          <Stepper activeStep={1} style={{ padding: 0 }} orientation="horizontal" connector={<ColorlibConnector />} alternativeLabel>
             {/* Pre select with disabled dropdown ethereum */}
-            <Step className={clstep.root}
-              expanded={activeStep >= 0}
-            //disabled={preventNavigation || isRedeemComplete}
-            >
-              <StepButton >
-                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}><b>POWR </b>Source</StepLabel>
-              </StepButton>
-              {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
-            </Step>
-            <Step className={clstep.root}
-              expanded={activeStep >= 1}
-            //disabled={ /* preventNavigation || isRedeemComplete || activeStep === 0*/ }
-            >
-              <StepButton >
-                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}><b>SOLSTICE </b>Target</StepLabel>
-              </StepButton>
-              {/*<StepButton onClick={() => dispatch(setStep(0))}>Source</StepButton>*/}
-            </Step>
-            <Step className={clstep.root} expanded={activeStep >= 2} disabled={true}>
-              <StepButton>
-                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}>Send tokens</StepLabel>
+            <Step className={clstep.root} >
+              <StepButton onClick={event =>  window.location.href='https://yourwormholebrige'}>
+                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}>Bridge</StepLabel>
               </StepButton>
             </Step>
-            <Step className={clstep.root} expanded={activeStep >= 3}>
-              <StepButton>
-                <StepLabel classes={{ label: classes.customLabelStyle }} StepIconComponent={ColorlibStepIcon}>Redeem tokens</StepLabel>
-              </StepButton>
-            </Step>
-            <Step className={clstep.root} expanded={activeStep >= 4}>
+            <Step className={clstep.root} active={true} expanded={true}>
               <StepButton
-                onClick={() => setStep(4)}
+                
               >
                 <StepLabel classes={{ label: classes.customLabelStyle }} style={{ fontWeight: 200 }} StepIconComponent={ColorlibStepIcon}>Swap</StepLabel>
               </StepButton>
