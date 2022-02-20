@@ -2,11 +2,12 @@ import { PublicKey } from "@solana/web3.js";
 import { TokenSwapLayout } from "../models";
 
 export const WRAPPED_SOL_MINT = new PublicKey(
-  "So11111111111111111111111111111111111111112"
+  "Powr111111111111111111111111111111111111112"
 );
 let TOKEN_PROGRAM_ID = new PublicKey(
-  "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+  "TokegX7HSkqQGYHTctikro23wmQJsE68xaB2NsCC3Jx"
 );
+
 
 let SWAP_PROGRAM_ID: PublicKey;
 let SWAP_PROGRAM_LEGACY_IDS: PublicKey[];
@@ -31,7 +32,7 @@ export const PROGRAM_IDS = [
     name: "mainnet-beta",
     swap: () => ({
       current: {
-        pubkey: new PublicKey("SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8"),
+        pubkey: new PublicKey("3Y5p67PMT1EEo8M37UVbUaV8Z33nnWL52BS5S5ThEsZf"),
         layout: TokenSwapLayout,
       },
       legacy: [new PublicKey("9qvG1zUp8xF1Bi4m6UdRNby1BAAuaDrUxSpv4CmRRMjL")],
@@ -41,7 +42,7 @@ export const PROGRAM_IDS = [
     name: "testnet",
     swap: () => ({
       current: {
-        pubkey: new PublicKey("SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8"),
+        pubkey: new PublicKey("3Y5p67PMT1EEo8M37UVbUaV8Z33nnWL52BS5S5ThEsZf"),
         layout: TokenSwapLayout,
       },
       legacy: [],
@@ -51,7 +52,7 @@ export const PROGRAM_IDS = [
     name: "devnet",
     swap: () => ({
       current: {
-        pubkey: new PublicKey("SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8"),
+        pubkey: new PublicKey("3Y5p67PMT1EEo8M37UVbUaV8Z33nnWL52BS5S5ThEsZf"),
         layout: TokenSwapLayout,
       },
       legacy: [],
@@ -61,7 +62,7 @@ export const PROGRAM_IDS = [
     name: "localnet",
     swap: () => ({
       current: {
-        pubkey: new PublicKey("369YmCWHGxznT7GGBhcLZDRcRoGWmGKFWdmtiPy78yj7"),
+        pubkey: new PublicKey("3Y5p67PMT1EEo8M37UVbUaV8Z33nnWL52BS5S5ThEsZf"),
         layout: TokenSwapLayout,
       },
       legacy: [],

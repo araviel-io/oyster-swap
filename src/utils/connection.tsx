@@ -28,7 +28,7 @@ export const ENDPOINTS = [
   },
   {
     name: "testnet" as ENV,
-    endpoint: clusterApiUrl("testnet"),
+    endpoint: 'https://api.testnet.marketdepth.net/',
     chainID: ChainID.Testnet,
   },
   {
