@@ -327,6 +327,6 @@ class TokenSwapLegacy {
 
 export class TokenSwapRouter {
   static route(isLatestSwap: boolean) : TokenSwap | TokenSwapLegacy {
-    return isLatestSwap ? TokenSwap : TokenSwapLegacy
+    return isLatestSwap ? TokenSwapLegacy : TokenSwap
   }
 }

@@ -123,7 +123,7 @@ export const removeLiquidity = async (
 
   // withdraw
   instructions.push(
-    TokenSwapRouter.route(isLatestSwap).withdrawAllTokenTypesInstruction(
+    TokenSwap.withdrawAllTokenTypesInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -254,7 +254,7 @@ export const removeExactOneLiquidity = async (
 
   // withdraw exact one
   instructions.push(
-    TokenSwapRouter.route(isLatestSwap).withdrawSingleTokenTypeExactAmountOutInstruction(
+    TokenSwap.withdrawSingleTokenTypeExactAmountOutInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -381,7 +381,7 @@ export const swap = async (
 
   // swap
   instructions.push(
-    TokenSwapRouter.route(isLatestSwap).swapInstruction(
+    TokenSwap.swapInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -837,7 +837,7 @@ async function _addLiquidityExistingPool(
 
   // deposit
   instructions.push(
-    TokenSwapRouter.route(isLatestSwap).depositAllTokenTypesInstruction(
+    TokenSwap.depositAllTokenTypesInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
@@ -965,7 +965,7 @@ async function _addLiquidityExactOneExistingPool(
 
   // deposit
   instructions.push(
-    TokenSwapRouter.route(isLatestSwap).depositSingleTokenTypeExactAmountInInstruction(
+    TokenSwap.depositSingleTokenTypeExactAmountInInstruction(
       pool.pubkeys.account,
       authority,
       transferAuthority.publicKey,
