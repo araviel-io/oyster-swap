@@ -2,12 +2,12 @@ import { TokenSwapLayout } from "@solana/spl-token-swap";
 import { PublicKey } from "@solana/web3.js";
 
 export const WRAPPED_SOL_MINT = new PublicKey(
-  "So11111111111111111111111111111111111111112"
+  "Powr111111111111111111111111111111111111112"
 );
 let TOKEN_PROGRAM_ID = new PublicKey(
-  "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+  "TokegX7HSkqQGYHTctikro23wmQJsE68xaB2NsCC3Jx"
 );
-const CURRENT_SWAP_PROGRAM_ID = new PublicKey("SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8");
+const CURRENT_SWAP_PROGRAM_ID = new PublicKey("3Y5p67PMT1EEo8M37UVbUaV8Z33nnWL52BS5S5ThEsZf");
 
 let SWAP_PROGRAM_ID: PublicKey;
 let SWAP_PROGRAM_LEGACY_IDS: PublicKey[];

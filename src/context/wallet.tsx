@@ -22,8 +22,8 @@ const ASSET_URL =
   "https://cdn.jsdelivr.net/gh/solana-labs/oyster@main/assets/wallets";
 export const WALLET_PROVIDERS = [
   {
-    name: "sollet.io",
-    url: "https://www.sollet.io",
+    name: "Safecoin wallet",
+    url: "https://plb-wallet.testnet.powerledger.io/",
     icon: `${ASSET_URL}/sollet.svg`,
   },
   {
