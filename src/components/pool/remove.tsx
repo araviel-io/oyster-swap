@@ -4,7 +4,7 @@ import { Button, Card, Col, Radio, Row, Slider, Spin, Typography } from "antd";
 import { removeLiquidity, removeExactOneLiquidity } from "../../utils/pools";
 import { useWallet } from "../../context/wallet";
 import { useConnection, useConnectionConfig } from "../../utils/connection";
-import { PoolInfo, TokenAccount, TokenSwapLayout } from "../../models";
+import { PoolInfo, TokenAccount } from "../../models";
 import { notify } from "../../utils/notifications";
 import { TokenIcon } from "../tokenIcon";
 import { YourPosition } from "./add";
@@ -18,6 +18,7 @@ import { PoolCurrencyInput } from "../currencyInput";
 import { LoadingOutlined } from "@ant-design/icons";
 import { generateRemoveLabel } from "../labels";
 import { programIds } from "../../utils/ids";
+import { TokenSwapLayout } from "@solana/spl-token-swap";
 
 export const RemoveLiquidity = (props: {
   instance: { account: TokenAccount; pool: PoolInfo };

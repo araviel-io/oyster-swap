@@ -10,7 +10,7 @@ export interface PoolInfo {
     holdingAccounts: PublicKey[];
     holdingMints: PublicKey[];
     mint: PublicKey;
-    feeAccount?: PublicKey;
+    feeAccount: PublicKey;
   };
   legacy: boolean;
   raw: {
